@@ -94,20 +94,7 @@ body {
 }
 
 .btn-icon:hover {
-    border-color: #e90000;
-    color: #e90000;
     transform: translateY(-1px);
-}
-
-.btn-primary {
-    background: #e90000;
-    color: #ffffff;
-    border: none;
-}
-
-.btn-primary:hover {
-    background: #951914;
-    color: #ffffff;
 }
 
 /* Presentation Container */
@@ -167,15 +154,12 @@ body {
 }
 
 .slide-title {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
     line-height: 1.2;
 }
 
 .slide-subtitle {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--muted);
 }
 
@@ -193,7 +177,6 @@ body {
     grid-template-columns: 1fr;
     gap: 12px;
     width: 100%;
-    height: auto;
 }
 
 .grid-3 {
@@ -229,22 +212,14 @@ body {
 }
 
 .card-title {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.card-title::before {
-    content: '';
-    width: 4px;
-    height: 16px;
-    background: #e90000;
-    border-radius: 2px;
-}
 
 /* KPI Hero Cards */
 .kpi-card {
@@ -260,15 +235,6 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-.kpi-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #e90000, #951914);
-}
 
 .kpi-label {
     font-size: 12px;
@@ -279,7 +245,6 @@ body {
 }
 
 .kpi-value {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 32px;
     font-weight: 800;
     color: var(--text);
@@ -288,7 +253,9 @@ body {
 }
 
 .kpi-highlight {
-    color: #e90000;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .kpi-sub {
@@ -308,10 +275,17 @@ body {
     justify-content: center;
 }
 
+.turnout-chart-container {
+    min-height: 360px;
+}
+
+.venue-comparison-chart-container {
+    min-height: 380px;
+}
+
 /* Data Tables */
 .data-table-wrapper {
     width: 100%;
-    height: 100%;
     overflow-y: auto;
     border-radius: 10px;
     border: 1px solid var(--border);
@@ -325,19 +299,15 @@ body {
 }
 
 .data-table th {
-    background-color: rgba(0, 0, 0, 0.35);
-    color: #e90000;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 700;
-    padding: 9px 10px;
+    background-color: rgb(0, 0, 0);
+    padding: 14px 12px;
     position: sticky;
     top: 0;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .data-table td {
     padding: 8px 10px;
-    border-bottom: 1px solid var(--border);
 }
 
 .data-table tbody tr:nth-child(even) {
@@ -429,6 +399,61 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 767px) {
+    .data-table-wrapper {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .data-table.mobile-cards {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        font-size: 13px;
+    }
+
+    .data-table.mobile-cards thead {
+        display: none;
+    }
+
+    .data-table.mobile-cards tbody tr,
+    .data-table.mobile-cards tbody tr:nth-child(even) {
+        display: block;
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+        overflow: hidden;
+    }
+
+    .data-table.mobile-cards td {
+        display: grid;
+        grid-template-columns: minmax(96px, 38%) 1fr;
+        align-items: start;
+        gap: 10px;
+        padding: 10px 12px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+        line-height: 1.35;
+    }
+
+    .data-table.mobile-cards td:last-child {
+        border-bottom: none;
+    }
+
+    .data-table.mobile-cards td::before {
+        content: attr(data-label);
+        color: #c8ced9;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+    }
+
+    .data-table.mobile-cards td .badge {
+        justify-self: start;
+    }
+}
+
 @media (min-width: 768px) {
     .app-header {
         height: 64px;
@@ -495,6 +520,14 @@ body {
         min-height: 250px;
     }
 
+    .turnout-chart-container {
+        min-height: 430px;
+    }
+
+    .venue-comparison-chart-container {
+        min-height: 460px;
+    }
+
     .app-footer {
         min-height: 56px;
         padding: 8px 20px;
@@ -535,5 +568,13 @@ body {
     .grid-4 {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
+    }
+
+    .turnout-chart-container {
+        min-height: 470px;
+    }
+
+    .venue-comparison-chart-container {
+        min-height: 500px;
     }
 }

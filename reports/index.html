@@ -32,7 +32,7 @@
         <section class="slide active" id="slide-1">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 01 // Operations Core</span>
+                    <span class="slide-tag">Operations Core</span>
                     <h1 class="slide-title">Festival Overview - How Did It Go?</h1>
                     <p class="slide-subtitle">Executive summary of gate check-ins, lead database capture, and badge
                         inventory efficiency.</p>
@@ -49,7 +49,8 @@
                     <div class="kpi-card">
                         <span class="kpi-label">Active Turnout</span>
                         <div class="kpi-value">1,096</div>
-                        <span class="kpi-sub"><span class="badge badge-success">75.95% Turnout Rate</span></span>
+                        <span class="kpi-sub"><span class="badge badge-success" style="margin-top: 5px;">75.95% Turnout
+                                Rate</span></span>
                     </div>
                     <div class="kpi-card">
                         <span class="kpi-label">Lead Contact Database</span>
@@ -64,7 +65,7 @@
                 </div>
 
                 <!-- Highlights Row -->
-                <div class="grid-3" style="flex: 1;">
+                <div class="grid-3" style="flex: 1; align-content: start;">
                     <div class="card">
                         <div class="card-title">Badge Inventory & Counter Velocity</div>
                         <div
@@ -108,7 +109,7 @@
         <section class="slide" id="slide-2">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 02 // Audience Demographics</span>
+                    <span class="slide-tag"> Audience Demographics</span>
                     <h1 class="slide-title">Audience - Category Distribution</h1>
                     <p class="slide-subtitle">Distribution of festival passes across 14 delegate categories.</p>
                 </div>
@@ -230,7 +231,7 @@
         <section class="slide" id="slide-3">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 03 // Content Preference</span>
+                    <span class="slide-tag"> Content Preference</span>
                     <h1 class="slide-title">What Did They Like? - Attendance per Venue</h1>
                     <p class="slide-subtitle">Gross check-in footfall logged across 12 active screening venues.</p>
                 </div>
@@ -340,7 +341,7 @@
         <section class="slide" id="slide-4">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 04 // Traffic Dynamics</span>
+                    <span class="slide-tag"> Traffic Dynamics</span>
                     <h1 class="slide-title">Peak Hour Analysis by Day & Time</h1>
                     <p class="slide-subtitle">Identification of the absolute peak hour across the festival and daily
                         footfall distribution.</p>
@@ -364,7 +365,7 @@
                             <!-- Absolute Peak Banner -->
                             <div class="kpi-card" style="padding: 16px; border-left: 4px solid #e90000;">
                                 <span class="kpi-label">⭐ Absolute Festival Peak Hour</span>
-                                <div class="kpi-value kpi-highlight" style="font-size: 26px; margin: 6px 0;">Saturday,
+                                <div class="kpi-highlight" style="font-size: 26px; margin: 6px 0;">Saturday,
                                     Aug 15 @ 06:00 AM</div>
                                 <span class="kpi-sub"><strong style="color: #e90000; font-size: 15px;">192 Scans
                                         Logged</strong> (Followed by Sat 09:00 AM with 185 scans)</span>
@@ -430,16 +431,16 @@
         <section class="slide" id="slide-5">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 05 // Delegate Engagement</span>
+                    <span class="slide-tag"> Delegate Engagement</span>
                     <h1 class="slide-title">Turn-Out - Top 5 & Bottom 3 Categories</h1>
                     <p class="slide-subtitle">Physical turnout rates (% of registered delegates who checked in).</p>
                 </div>
             </div>
             <div class="slide-body">
-                <div class="grid-2">
+                <div class="grid-2" style="align-content: start;">
                     <!-- Top 5 Card -->
                     <div class="card">
-                        <div class="card-title" style="color: #22c55e;">Top 5 Highest Turnout Categories</div>
+                        <div class="card-title">Top 5 Highest Turnout Categories</div>
                         <div class="data-table-wrapper">
                             <table class="data-table">
                                 <thead>
@@ -488,7 +489,7 @@
 
                     <!-- Bottom 3 Card -->
                     <div class="card">
-                        <div class="card-title" style="color: #e90000;">Bottom 3 Lowest Turnout
+                        <div class="card-title">Bottom 3 Lowest Turnout
                             Categories</div>
                         <div class="data-table-wrapper">
                             <table class="data-table">
@@ -536,7 +537,7 @@
         <section class="slide" id="slide-6">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 06 // Turnout Benchmark</span>
+                    <span class="slide-tag"> Turnout Benchmark</span>
                     <h1 class="slide-title">Turn-Out Rate Comparison Chart</h1>
                     <p class="slide-subtitle">Comparative turnout percentage across all registered delegate categories.
                     </p>
@@ -545,7 +546,7 @@
             <div class="slide-body">
                 <div class="card" style="width: 100%;">
                     <div class="card-title">Category Turnout Rate (%)</div>
-                    <div class="chart-container">
+                    <div class="chart-container turnout-chart-container">
                         <canvas id="chartTurnoutBar"></canvas>
                     </div>
                 </div>
@@ -556,16 +557,16 @@
         <section class="slide" id="slide-7">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 07 // Venue Analytics</span>
+                    <span class="slide-tag"> Venue Analytics</span>
                     <h1 class="slide-title">Venue Performance - Top 5 & Bottom 3</h1>
                     <p class="slide-subtitle">Check-in density and unique delegate reach per venue.</p>
                 </div>
             </div>
             <div class="slide-body">
-                <div class="grid-2">
+                <div class="grid-2" style="align-content: start;">
                     <!-- Top 5 Venues -->
                     <div class="card">
-                        <div class="card-title" style="color: #22c55e;">Top 5 Screening Venues</div>
+                        <div class="card-title">Top 5 Screening Venues</div>
                         <div class="data-table-wrapper">
                             <table class="data-table">
                                 <thead>
@@ -608,7 +609,7 @@
 
                     <!-- Bottom 3 Venues -->
                     <div class="card">
-                        <div class="card-title" style="color: #e90000;">Bottom 3 Screening Venues
+                        <div class="card-title">Bottom 3 Screening Venues
                         </div>
                         <div class="data-table-wrapper">
                             <table class="data-table">
@@ -652,7 +653,7 @@
         <section class="slide" id="slide-8">
             <div class="slide-header">
                 <div class="slide-title-group">
-                    <span class="slide-tag">Slide 08 // Venue Benchmark</span>
+                    <span class="slide-tag"> Venue Benchmark</span>
                     <h1 class="slide-title">Venue Footfall - Scans vs Unique Attendees</h1>
                     <p class="slide-subtitle">Comparison of total gate check-in scans vs unique delegates across all 12
                         venues.</p>
@@ -661,7 +662,7 @@
             <div class="slide-body">
                 <div class="card" style="width: 100%;">
                     <div class="card-title">Gross Scans vs Unique Delegates per Venue</div>
-                    <div class="chart-container">
+                    <div class="chart-container venue-comparison-chart-container">
                         <canvas id="chartVenueComparison"></canvas>
                     </div>
                 </div>
@@ -684,20 +685,10 @@
         </div>
         <div class="footer-nav-controls">
             <button class="btn-icon" id="btnPrev" title="Previous Slide (Left Arrow)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                </svg>
                 Back
             </button>
-            <button class="btn-icon btn-primary" id="btnNext" title="Next Slide (Right Arrow)">
+            <button class="btn-icon" id="btnNext" title="Next Slide (Right Arrow)">
                 Next
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                </svg>
             </button>
         </div>
     </footer>

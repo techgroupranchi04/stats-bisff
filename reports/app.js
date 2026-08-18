@@ -1,30 +1,4 @@
 // BISFF Presentation Interactive Logic & Chart Engine
-
-const THEME_COLORS = {
-    brand: {
-        primary: "#e90000",
-        primaryDark: "#951914",
-    },
-    neutral: {
-        black: "#282828",
-        white: "#fcfcfc",
-    },
-    light: {
-        background: {
-            default: "#f2ebe2",
-            paper: "#fcfcfc",
-            surface: "#f2ebe2",
-        },
-    },
-    dark: {
-        background: {
-            default: "#191515",
-            paper: "#1E1C1C",
-            surface: "#010101",
-        },
-    },
-};
-
 let currentSlide = 0;
 const totalSlides = 8;
 const slides = document.querySelectorAll('.slide');
@@ -35,11 +9,11 @@ const btnNext = document.getElementById('btnNext');
 // Chart Instances
 let charts = {};
 
-// Palette for charts
+// Beautifully toned-down (matte/pastel) palette for charts
 const chartColors = [
-    '#e90000', '#951914', '#f97316', '#eab308', '#22c55e',
-    '#06b6d4', '#3b82f6', '#6366f1', '#a855f7', '#ec4899',
-    '#64748b', '#84cc16', '#14b8a6', '#d97706'
+    '#ff6b6b', '#d65a54', '#fb9c4e', '#fcd34d', '#4ade80',
+    '#4fd1c5', '#60a5fa', '#818cf8', '#c084fc', '#f472b6',
+    '#94a3b8', '#a3e635', '#2dd4bf', '#fbbf24'
 ];
 
 function updateSlide(index) {
@@ -87,11 +61,11 @@ document.addEventListener('keydown', (e) => {
 
 
 function getThemeTextColor() {
-    return '#ffffff';
+    return '#e2e8f0'; // Slightly softer white/gray for text
 }
 
 function getThemeGridColor() {
-    return 'rgba(255,255,255,0.1)';
+    return 'rgba(255,255,255,0.05)'; // Toned down grid lines (was 0.1)
 }
 
 // Initialize Charts
@@ -109,17 +83,18 @@ function initCharts() {
                 datasets: [{
                     data: [1005, 716, 284, 279, 204, 83, 77, 189],
                     backgroundColor: chartColors,
-                    borderColor: THEME_COLORS.dark.background.paper,
-                    borderWidth: 2
+                    borderWidth: 0, // Removed border for a cleaner modern look
+                    hoverOffset: 4
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                cutout: '65%', // Thinner ring looks more elegant
                 plugins: {
                     legend: {
                         position: 'right',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 12 } }
+                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 20 }
                     }
                 }
             }
@@ -139,7 +114,8 @@ function initCharts() {
                 datasets: [{
                     data: [742, 454, 380, 304, 184, 105, 97, 95, 99],
                     backgroundColor: chartColors,
-                    borderWidth: 2
+                    borderWidth: 0, // Removed border
+                    hoverOffset: 4
                 }]
             },
             options: {
@@ -148,7 +124,7 @@ function initCharts() {
                 plugins: {
                     legend: {
                         position: 'right',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 12 } }
+                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 20 }
                     }
                 }
             }
@@ -166,19 +142,19 @@ function initCharts() {
                     {
                         label: 'Friday (Aug 14)',
                         data: [89, 90, 54, 70, 27, 59, 86, 41, 35, 80],
-                        backgroundColor: '#3b82f6',
+                        backgroundColor: '#60a5fa', // Toned down blue
                         borderRadius: 4
                     },
                     {
                         label: 'Saturday (Aug 15) - Peak Day ⭐',
                         data: [192, 185, 166, 74, 99, 75, 65, 56, 79, 22],
-                        backgroundColor: THEME_COLORS.brand.primary,
+                        backgroundColor: '#fb9c4e', // Toned down orange
                         borderRadius: 4
                     },
                     {
                         label: 'Sunday (Aug 16)',
                         data: [147, 157, 116, 128, 118, 103, 7, 24, 0, 0],
-                        backgroundColor: '#22c55e',
+                        backgroundColor: '#4ade80', // Toned down green
                         borderRadius: 4
                     }
                 ]
@@ -186,14 +162,25 @@ function initCharts() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 8,
+                            right: 6,
+                            bottom: 22,
+                            left: 6
+                        }
+                    },
                 scales: {
-                    x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-                    y: { ticks: { color: textColor }, grid: { color: gridColor } }
+                        x: {
+                            ticks: { color: textColor, font: { size: 11 }, padding: 8 },
+                            grid: { display: false }
+                        }, // Hide vertical grid lines
+                    y: { ticks: { color: textColor }, grid: { color: gridColor, borderDash: [5, 5] } } // Dashed horizontal lines
                 },
                 plugins: {
                     legend: {
                         position: 'top',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 11 } }
+                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 15 }
                     }
                 }
             }
@@ -215,20 +202,36 @@ function initCharts() {
                     data: [93.75, 63.64, 40.85, 40.00, 39.39, 39.29, 39.10, 38.97, 36.14, 35.71, 33.33, 17.65],
                     backgroundColor: (ctx) => {
                         const val = ctx.raw;
-                        if (val > 60) return '#22c55e';
-                        if (val > 38) return THEME_COLORS.brand.primary;
-                        return '#eab308';
+                        // Toned down dynamic colors
+                        if (val > 60) return '#4ade80'; // Soft green
+                        if (val > 38) return '#fcd34d'; // Soft yellow
+                        return '#60a5fa'; // Soft blue
                     },
-                    borderRadius: 6
+                    borderRadius: 6,
+                    barPercentage: 0.72,
+                    categoryPercentage: 0.82,
+                    maxBarThickness: 20
                 }]
             },
             options: {
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: 8,
+                        right: 6,
+                        bottom: 20,
+                        left: 6
+                    }
+                },
                 scales: {
-                    x: { ticks: { color: textColor }, grid: { color: gridColor }, max: 100 },
-                    y: { ticks: { color: textColor }, grid: { color: gridColor } }
+                    x: {
+                        ticks: { color: textColor, padding: 8 },
+                        grid: { color: gridColor, borderDash: [5, 5] },
+                        max: 100
+                    },
+                    y: { ticks: { color: textColor, autoSkip: false, font: { size: 12 } }, grid: { display: false } } // Hide horizontal grid lines
                 },
                 plugins: {
                     legend: { display: false }
@@ -251,28 +254,55 @@ function initCharts() {
                     {
                         label: 'Gross Scans Logged',
                         data: [742, 454, 380, 304, 184, 105, 97, 95, 52, 31, 15, 1],
-                        backgroundColor: THEME_COLORS.brand.primary,
-                        borderRadius: 6
+                        backgroundColor: '#ff6b6b', // Toned down red
+                        borderRadius: 6,
+                        barPercentage: 0.74,
+                        categoryPercentage: 0.86,
+                        maxBarThickness: 18
                     },
                     {
                         label: 'Unique Delegates',
                         data: [449, 315, 256, 210, 168, 99, 92, 79, 52, 31, 15, 1],
-                        backgroundColor: '#3b82f6',
-                        borderRadius: 6
+                        backgroundColor: '#faeb60', // Toned down blue
+                        borderRadius: 6,
+                        barPercentage: 0.74,
+                        categoryPercentage: 0.86,
+                        maxBarThickness: 18
                     }
                 ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: 10,
+                        bottom: 24,
+                        right: 6,
+                        left: 6
+                    }
+                },
                 scales: {
-                    x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-                    y: { ticks: { color: textColor }, grid: { color: gridColor } }
+                    x: {
+                        ticks: {
+                            color: textColor,
+                            font: { size: 10 },
+                            autoSkip: false,
+                            padding: 8,
+                            maxRotation: 35,
+                            minRotation: 35
+                        },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { color: textColor, font: { size: 11 } },
+                        grid: { color: gridColor, borderDash: [5, 5] }
+                    }
                 },
                 plugins: {
                     legend: {
                         position: 'top',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 12 } }
+                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 15 }
                     }
                 }
             }
@@ -281,18 +311,22 @@ function initCharts() {
 }
 
 function updateChartThemes() {
-    const textColor = '#ffffff';
-    const gridColor = 'rgba(255,255,255,0.1)';
+    const textColor = getThemeTextColor();
+    const gridColor = getThemeGridColor();
 
     Object.values(charts).forEach(chart => {
         if (chart.options.scales) {
             if (chart.options.scales.x) {
                 chart.options.scales.x.ticks.color = textColor;
-                chart.options.scales.x.grid.color = gridColor;
+                if (chart.options.scales.x.grid.display !== false) {
+                    chart.options.scales.x.grid.color = gridColor;
+                }
             }
             if (chart.options.scales.y) {
                 chart.options.scales.y.ticks.color = textColor;
-                chart.options.scales.y.grid.color = gridColor;
+                if (chart.options.scales.y.grid.display !== false) {
+                    chart.options.scales.y.grid.color = gridColor;
+                }
             }
         }
         if (chart.options.plugins && chart.options.plugins.legend) {
