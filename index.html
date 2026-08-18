@@ -15,10 +15,6 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- jsPDF & autoTable Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -186,11 +182,12 @@
         }
 
         .report-button {
-            visibility: hidden;
+            text-decoration: none;
             border: none;
             outline: none;
-            padding: 9px 16px;
-            border-radius: 10px;
+            line-height: 1.1;
+            padding: 10px 16px;
+            border-radius: 30px;
             background: var(--checkin);
             color: #ffffff;
             font-size: 13px;
@@ -482,9 +479,9 @@
 
             <div class="header-right">
                 <!-- Generate Reports Button -->
-                <button id="openReportBtn" class="report-button" type="button">
-                    Generate Reports
-                </button>
+                <a class="report-button" type="button" href="/reports/index.html">
+                    View Reports
+                </a>
 
                 <div class="live-status">
                     <span id="liveDot" class="live-dot"></span>
@@ -550,42 +547,6 @@
         </footer>
     </div>
 
-    <!-- REPORT MODAL DIALOG -->
-    <div id="reportModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Generate Report</h2>
-            </div>
-
-            <div class="form-group">
-                <label for="reportFromDate">From Date</label>
-                <input type="date" id="reportFromDate">
-            </div>
-
-            <div class="form-group">
-                <label for="reportToDate">To Date</label>
-                <input type="date" id="reportToDate">
-            </div>
-
-            <div class="form-group">
-                <label>Data Type</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="chkRegistration" checked> Registration
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="chkCheckedIn" checked> Checked In
-                    </label>
-                </div>
-            </div>
-
-            <div class="modal-actions">
-                <button id="closeReportBtn" class="btn-cancel">Cancel</button>
-                <button id="downloadPdfBtn" class="report-button">Download PDF</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         const festivalId = 1142;
         const REGISTRATION_API = `https://api.stats.freecomers.com/festivals/${festivalId}/registered-statistics`;
@@ -609,14 +570,6 @@
         const chkinDatePicker = document.getElementById("chkinDatePicker");
         const refreshInfo = document.getElementById("refreshInfo");
 
-        const reportModal = document.getElementById("reportModal");
-        const openReportBtn = document.getElementById("openReportBtn");
-        const closeReportBtn = document.getElementById("closeReportBtn");
-        const downloadPdfBtn = document.getElementById("downloadPdfBtn");
-        const reportFromDate = document.getElementById("reportFromDate");
-        const reportToDate = document.getElementById("reportToDate");
-        const chkRegistration = document.getElementById("chkRegistration");
-        const chkCheckedIn = document.getElementById("chkCheckedIn");
 
         function getTodayString() {
             const now = new Date();
@@ -670,185 +623,6 @@
             }
             return dates;
         }
-
-        /* ============================================================
-            REPORT GENERATION & PDF DOWNLOAD
-        ============================================================ */
-        openReportBtn.addEventListener("click", () => {
-            reportModal.style.display = "flex";
-            if (!reportToDate.value) reportToDate.value = getTodayString();
-            if (!reportFromDate.value) reportFromDate.value = getTodayString();
-        });
-
-        closeReportBtn.addEventListener("click", () => {
-            reportModal.style.display = "none";
-        });
-
-        window.addEventListener("click", (e) => {
-            if (e.target === reportModal) reportModal.style.display = "none";
-        });
-
-        downloadPdfBtn.addEventListener("click", async () => {
-            const from = reportFromDate.value;
-            const to = reportToDate.value;
-            const hasReg = chkRegistration.checked;
-            const hasCheck = chkCheckedIn.checked;
-
-            if (!from || !to) {
-                alert("Please select both 'From' and 'To' dates.");
-                return;
-            }
-            if (from > to) {
-                alert("'From Date' cannot be greater than 'To Date'.");
-                return;
-            }
-            if (!hasReg && !hasCheck) {
-                alert("Please select at least one data type (Registration or Checked In).");
-                return;
-            }
-
-            const dates = getDateRangeArray(from, to);
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Pre-fetch all data to calculate summary totals
-            const reportData = { reg: [], chk: [] };
-            let grandTotalReg = 0;
-            let grandTotalChk = 0;
-
-            for (const d of dates) {
-                if (hasReg) {
-                    let history = [];
-                    try {
-                        const res = await fetchStats(REGISTRATION_API, d);
-                        history = res?.data?.history || [];
-                    } catch (err) {
-                        console.error(`Error fetching reg for ${d}:`, err);
-                    }
-                    reportData.reg.push({ date: d, history });
-                    history.forEach(h => { grandTotalReg += Number(h.count || 0); });
-                }
-
-                if (hasCheck) {
-                    let history = [];
-                    try {
-                        const res = await fetchStats(CHECKIN_API, d);
-                        history = res?.data?.history || [];
-                    } catch (err) {
-                        console.error(`Error fetching chk for ${d}:`, err);
-                    }
-                    reportData.chk.push({ date: d, history });
-                    history.forEach(h => { grandTotalChk += Number(h.count || 0); });
-                }
-            }
-
-            let currentY = 15;
-
-            // 1. Report Header
-            doc.setFontSize(16);
-            doc.setFont("helvetica", "bold");
-            doc.setTextColor(20, 20, 20);
-            doc.text("Bengaluru International Short Film Festival", 105, currentY, { align: "center" });
-            currentY += 7;
-
-            doc.setFontSize(11);
-            doc.setFont("helvetica", "normal");
-            doc.setTextColor(80, 80, 80);
-            doc.text(`Report Period: ${formatSelectedDate(from)} to ${formatSelectedDate(to)}`, 105, currentY, { align: "center" });
-            currentY += 8;
-
-            // Header Separator Line
-            doc.setLineWidth(0.5);
-            doc.setDrawColor(210, 210, 210);
-            doc.line(20, currentY, 190, currentY);
-            currentY += 8;
-
-            // 2. Summary Section
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.setTextColor(20, 20, 20);
-            doc.text("Total Summary (Selected Range):", 20, currentY);
-            currentY += 6;
-
-            doc.setFontSize(11);
-            doc.setFont("helvetica", "normal");
-            doc.setTextColor(50, 50, 50);
-            if (hasReg) {
-                doc.text(`Registered Users: ${formatNumber(grandTotalReg)}`, 25, currentY);
-                currentY += 6;
-            }
-            if (hasCheck) {
-                doc.text(`Checked In Users: ${formatNumber(grandTotalChk)}`, 25, currentY);
-                currentY += 6;
-            }
-
-            // Add padding before tables
-            currentY += 4;
-
-            // 3. Generate Tables
-            function buildTable(title, dataArray) {
-                const tableRows = [];
-
-                dataArray.forEach(dayData => {
-                    dayData.history.forEach((entry, idx) => {
-                        const dateCell = (idx === 0) ? formatTableDate(dayData.date) : "";
-                        tableRows.push([
-                            dateCell,
-                            entry.at || "-",
-                            formatNumber(entry.count || 0)
-                        ]);
-                    });
-                });
-
-                doc.autoTable({
-                    startY: currentY,
-                    head: [
-                        [{ content: title, colSpan: 3, styles: { halign: 'center', fontStyle: 'bold', fontSize: 13, fillColor: [245, 245, 245], textColor: [0, 0, 0] } }],
-                        ['Date', 'Time', 'Total Users']
-                    ],
-                    body: tableRows,
-                    theme: 'grid',
-                    headStyles: {
-                        fillColor: [255, 255, 255],
-                        textColor: [0, 0, 0],
-                        fontStyle: 'bold',
-                        lineWidth: 0.2,
-                        lineColor: [210, 210, 210]
-                    },
-                    bodyStyles: {
-                        textColor: [30, 30, 30],
-                        fontSize: 10,
-                        lineWidth: 0.2,
-                        lineColor: [225, 225, 225]
-                    },
-                    columnStyles: {
-                        0: { cellWidth: 50, halign: 'center' },
-                        1: { cellWidth: 50, halign: 'center' },
-                        2: { cellWidth: 'auto', halign: 'right' }
-                    },
-                    margin: { left: 20, right: 20 }
-                });
-
-                currentY = doc.lastAutoTable.finalY + 15;
-            }
-
-            if (hasReg) {
-                buildTable("Registered Users", reportData.reg);
-            }
-
-            if (hasCheck) {
-                // Prevent check-in table from splitting weirdly if space is low
-                if (hasReg && currentY > 210) {
-                    doc.addPage();
-                    currentY = 20;
-                }
-                buildTable("Checked In Users", reportData.chk);
-            }
-
-            doc.save(`BISFF_Report_${from}_to_${to}.pdf`);
-            reportModal.style.display = "none";
-        });
-
 
 
         /* ============================================================
