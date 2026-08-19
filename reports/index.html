@@ -117,7 +117,7 @@
             <div class="slide-body">
                 <div class="grid-2">
                     <div class="card">
-                        <div class="card-title">Audience Category Share</div>
+                        <div class="card-title">Audience Category Share (Registered)</div>
                         <div class="chart-container">
                             <canvas id="chartAudience"></canvas>
                         </div>
@@ -332,13 +332,41 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div
+                            style="margin-top: 14px; padding: 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted);">
+                            <strong>Capacity Insight:</strong> Suchitra Audi & Nani Angala recorded 48.6% of total
+                            check-ins. Top 4 venues accounted for 76.4% of total traffic.
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- SLIDE 4: VENUE CHART -->
+        <section class="slide" id="slide-4">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="slide-tag"> Venue Benchmark</span>
+                    <h1 class="slide-title">Venue Footfall - Scans vs Unique Attendees</h1>
+                    <p class="slide-subtitle">Comparison of total gate check-in scans vs unique delegates across all 12
+                        venues.</p>
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="card" style="width: 100%;">
+                    <div class="card-title">Gross Scans vs Unique Delegates per Venue</div>
+                    <div class="chart-container venue-comparison-chart-container">
+                        <canvas id="chartVenueComparison"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 4: PEAK HOURS BY DAY & TIME -->
-        <section class="slide" id="slide-4">
+        <!-- SLIDE 5: PEAK HOURS BY DAY & TIME -->
+        <section class="slide" id="slide-5">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Traffic Dynamics</span>
@@ -427,111 +455,6 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: TURN-OUT ANALYSIS -->
-        <section class="slide" id="slide-5">
-            <div class="slide-header">
-                <div class="slide-title-group">
-                    <span class="slide-tag"> Delegate Engagement</span>
-                    <h1 class="slide-title">Turn-Out - Top 5 & Bottom 3 Categories</h1>
-                    <p class="slide-subtitle">Physical turnout rates (% of registered delegates who checked in).</p>
-                </div>
-            </div>
-            <div class="slide-body">
-                <div class="grid-2" style="align-content: start;">
-                    <!-- Top 5 Card -->
-                    <div class="card">
-                        <div class="card-title">Top 5 Highest Turnout Categories</div>
-                        <div class="data-table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Registered</th>
-                                        <th>Checked-In</th>
-                                        <th>Turnout %</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Organizer</td>
-                                        <td>16</td>
-                                        <td>15</td>
-                                        <td><span class="badge badge-success">93.75%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Guest</td>
-                                        <td>77</td>
-                                        <td>49</td>
-                                        <td><span class="badge badge-success">63.64%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pitcher</td>
-                                        <td>284</td>
-                                        <td>116</td>
-                                        <td><span class="badge badge-success">40.85%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Discovery Film</td>
-                                        <td>35</td>
-                                        <td>14</td>
-                                        <td><span class="badge badge-success">40.00%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Buyer</td>
-                                        <td>33</td>
-                                        <td>13</td>
-                                        <td><span class="badge badge-success">39.39%</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Bottom 3 Card -->
-                    <div class="card">
-                        <div class="card-title">Bottom 3 Lowest Turnout
-                            Categories</div>
-                        <div class="data-table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Registered</th>
-                                        <th>Checked-In</th>
-                                        <th>Turnout %</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Student / Senior</td>
-                                        <td>204</td>
-                                        <td>68</td>
-                                        <td><span class="badge badge-warning">33.33%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Filmmaker</td>
-                                        <td>279</td>
-                                        <td>93</td>
-                                        <td><span class="badge badge-warning">33.33%</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speaker</td>
-                                        <td>17</td>
-                                        <td>3</td>
-                                        <td><span class="badge badge-warning">17.65%</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div
-                            style="margin-top: 14px; padding: 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted);">
-                            <strong>Key Insight:</strong> High physical conversion in industry tiers (Pitchers, Buyers,
-                            Guests) vs lower attendance in free/discounted passes.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- SLIDE 6: TURN-OUT CHART -->
         <section class="slide" id="slide-6">
@@ -553,121 +476,9 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: VENUE PERFORMANCE -->
-        <section class="slide" id="slide-7">
-            <div class="slide-header">
-                <div class="slide-title-group">
-                    <span class="slide-tag"> Venue Analytics</span>
-                    <h1 class="slide-title">Venue Performance - Top 5 & Bottom 3</h1>
-                    <p class="slide-subtitle">Check-in density and unique delegate reach per venue.</p>
-                </div>
-            </div>
-            <div class="slide-body">
-                <div class="grid-2" style="align-content: start;">
-                    <!-- Top 5 Venues -->
-                    <div class="card">
-                        <div class="card-title">Top 5 Screening Venues</div>
-                        <div class="data-table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Venue Name</th>
-                                        <th>Gross Scans</th>
-                                        <th>Unique Attendees</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Suchitra - Puravankara Audi</td>
-                                        <td>742</td>
-                                        <td>449</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Suchitra - Nani Angala</td>
-                                        <td>454</td>
-                                        <td>315</td>
-                                    </tr>
-                                    <tr>
-                                        <td>The LIT School, Bangalore</td>
-                                        <td>380</td>
-                                        <td>256</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Suchitra - HNN Hall</td>
-                                        <td>304</td>
-                                        <td>210</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Knowledgeum</td>
-                                        <td>184</td>
-                                        <td>168</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
-                    <!-- Bottom 3 Venues -->
-                    <div class="card">
-                        <div class="card-title">Bottom 3 Screening Venues
-                        </div>
-                        <div class="data-table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Venue Name</th>
-                                        <th>Gross Scans</th>
-                                        <th>Unique Attendees</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>NMKRV - Mangala</td>
-                                        <td>31</td>
-                                        <td>31</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Goethe Institute</td>
-                                        <td>15</td>
-                                        <td>15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RVU</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div
-                            style="margin-top: 14px; padding: 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted);">
-                            <strong>Capacity Insight:</strong> Suchitra Audi & Nani Angala recorded 48.6% of total
-                            check-ins. Top 4 venues accounted for 76.4% of total traffic.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- SLIDE 8: VENUE CHART -->
-        <section class="slide" id="slide-8">
-            <div class="slide-header">
-                <div class="slide-title-group">
-                    <span class="slide-tag"> Venue Benchmark</span>
-                    <h1 class="slide-title">Venue Footfall - Scans vs Unique Attendees</h1>
-                    <p class="slide-subtitle">Comparison of total gate check-in scans vs unique delegates across all 12
-                        venues.</p>
-                </div>
-            </div>
-            <div class="slide-body">
-                <div class="card" style="width: 100%;">
-                    <div class="card-title">Gross Scans vs Unique Delegates per Venue</div>
-                    <div class="chart-container venue-comparison-chart-container">
-                        <canvas id="chartVenueComparison"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
     </main>
 
@@ -675,8 +486,6 @@
     <footer class="app-footer">
         <div class="slide-progress-dots" id="progressDots">
             <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>

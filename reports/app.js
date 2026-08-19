@@ -1,6 +1,6 @@
 // BISFF Presentation Interactive Logic & Chart Engine
 let currentSlide = 0;
-const totalSlides = 8;
+const totalSlides = 6;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 const btnPrev = document.getElementById('btnPrev');
@@ -162,19 +162,19 @@ function initCharts() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            top: 8,
-                            right: 6,
-                            bottom: 22,
-                            left: 6
-                        }
-                    },
+                layout: {
+                    padding: {
+                        top: 8,
+                        right: 6,
+                        bottom: 22,
+                        left: 6
+                    }
+                },
                 scales: {
-                        x: {
-                            ticks: { color: textColor, font: { size: 11 }, padding: 8 },
-                            grid: { display: false }
-                        }, // Hide vertical grid lines
+                    x: {
+                        ticks: { color: textColor, font: { size: 11 }, padding: 8 },
+                        grid: { display: false }
+                    }, // Hide vertical grid lines
                     y: { ticks: { color: textColor }, grid: { color: gridColor, borderDash: [5, 5] } } // Dashed horizontal lines
                 },
                 plugins: {
