@@ -1,6 +1,6 @@
 // BISFF Presentation Interactive Logic & Chart Engine
 let currentSlide = 0;
-const totalSlides = 6;
+const totalSlides = 7;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 const btnPrev = document.getElementById('btnPrev');
@@ -308,7 +308,41 @@ function initCharts() {
             }
         });
     }
+
+    // Chart 6: Verification Query Breakdown Chart
+    const ctxVerification = document.getElementById('chartVerification')?.getContext('2d');
+    if (ctxVerification) {
+        charts.verification = new Chart(ctxVerification, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'NMKRV', 'SUCHITRA Audi', 'Knowledgeum', 'Alliance Fr.',
+                    'Nani Angala', 'Indian Heritage', 'RVU', 'BIC', 'Goethe'
+                ],
+                datasets: [{
+                    label: 'Event Count',
+                    data: [15, 14, 14, 14, 13, 13, 10, 9, 3],
+                    backgroundColor: '#6bff72',
+                    borderRadius: 6,
+                    barPercentage: 0.7,
+                    categoryPercentage: 0.8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { color: textColor, font: { size: 10 } }, grid: { display: false } },
+                    y: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor, borderDash: [5, 5] }, beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
 }
+
 
 function updateChartThemes() {
     const textColor = getThemeTextColor();

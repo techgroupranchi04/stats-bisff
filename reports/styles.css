@@ -283,6 +283,10 @@ body {
     min-height: 380px;
 }
 
+.verification-chart-container {
+    min-height: 320px;
+}
+
 /* Data Tables */
 .data-table-wrapper {
     width: 100%;
@@ -343,6 +347,46 @@ body {
     background: rgba(233, 0, 0, 0.25);
     border: 1px solid rgba(233, 0, 0, 0.4);
 }
+
+.badge-neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.code-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text);
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.btn-tab {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-tab:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+}
+
+.btn-tab.active {
+    background: rgba(233, 0, 0, 0.3);
+    color: #ffffff;
+    border-color: rgba(233, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(233, 0, 0, 0.3);
+}
+
 
 /* Footer Controls & Progress */
 .app-footer {
@@ -522,6 +566,10 @@ body {
         min-height: 430px;
     }
 
+    .verification-chart-container {
+        min-height: 430px;
+    }
+
     .venue-comparison-chart-container {
         min-height: 460px;
     }
@@ -569,6 +617,10 @@ body {
     }
 
     .turnout-chart-container {
+        min-height: 470px;
+    }
+
+    .verification-chart-container {
         min-height: 470px;
     }
 

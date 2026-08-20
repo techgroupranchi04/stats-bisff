@@ -365,8 +365,97 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: PEAK HOURS BY DAY & TIME -->
+
+        <!-- SLIDE 5: VERIFICATION QUERY BREAKDOWN -->
         <section class="slide" id="slide-5">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="slide-tag">
+                        Venue Utilization
+                    </span>
+                    <h1 class="slide-title"> Event Distribution & Venue Programming</h1>
+                    <p class="slide-subtitle">A comprehensive breakdown of the 105 scheduled events hosted across 9
+                        active festival locations.
+                    </p>
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="grid-2">
+                    <!-- Left Card: Data Table -->
+                    <div class="card">
+                        <div class="card-title">
+                            <span>Event Count by Venue</span>
+                            <span class="badge badge-brand" style="margin-left: auto;">105 Total Events</span>
+                        </div>
+                        <div class="data-table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Venue</th>
+                                        <th style="text-align: right;">Total Events</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>NMKRV (Shashwathi)</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">15</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>SUCHITRA - Puravankara Audi</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">14</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Jain Knowledgeum Academy</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">14</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Alliance Française de Bangalore</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">14</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>SUCHITRA - Nani Angala</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">13</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Indian Heritage Academy</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-brand">13</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>RV University</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-success">10</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>BIC</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-success">9</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Goethe Institut / Max Mueller Bhavan</strong></td>
+                                        <td style="text-align: right;"><span class="badge badge-success">3</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div
+                            style="margin-top: 10px; padding: 10px 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted); line-height: 1.4;">
+                            <strong>Key Insight:</strong> A total of 105 events are distributed across 9 unique
+                            venues.
+                        </div>
+                    </div>
+
+                    <!-- Right Card: Chart Visual -->
+                    <div class="card">
+                        <div class="card-title">Audience Category Share (Registered)</div>
+                        <div class="chart-container verification-chart-container">
+                            <canvas id="chartVerification"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: PEAK HOURS BY DAY & TIME -->
+        <section class="slide" id="slide-6">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Traffic Dynamics</span>
@@ -456,8 +545,8 @@
         </section>
 
 
-        <!-- SLIDE 6: TURN-OUT CHART -->
-        <section class="slide" id="slide-6">
+        <!-- SLIDE 7: TURN-OUT CHART -->
+        <section class="slide" id="slide-7">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Turnout Benchmark</span>
@@ -478,14 +567,13 @@
 
 
 
-
-
     </main>
 
     <!-- Footer Navigation Bar -->
     <footer class="app-footer">
         <div class="slide-progress-dots" id="progressDots">
             <div class="dot active"></div>
+            <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
