@@ -7,7 +7,7 @@
     <title>Bengaluru International Short Film Festival | BISFF 2025</title>
     <meta name="description"
         content="The festival showcases shorts from across the world, creating a physical space for a great audience experience and bringing together a keen audience for the filmmakers. BISFF also exhibits works by past masters who have dabbled in short filmmaking that today is viewed as an art form that needs a unique approach.">
-
+    <link rel="stylesheet" href="styles.css">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
         href="https://api.freecomers.com/api/v1/non-auth-user/retrieve-media/images/film-festivals/film_festival_logo_F00313.webp">
@@ -15,455 +15,7 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
 
-        :root {
-            --bg: #090909;
-            --card: rgba(255, 255, 255, 0.055);
-            --border: rgba(255, 255, 255, 0.09);
-            --text: #ffffff;
-            --muted: #999999;
-            --muted-dark: #666666;
-
-            --registration: #ffffff;
-            --checkin: #e90000;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top left, #321616 0%, #151515 35%, #090909 100%);
-            color: var(--text);
-            padding: 40px 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* =========================================================
-            HEADER
-        ========================================================= */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .title-section h1 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.7px;
-        }
-
-        .title-section p {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 15px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        /* =========================================================
-            DATE SELECTOR & CONTROLS
-        ========================================================= */
-        .date-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-        }
-
-        .date-control label {
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .date-control input {
-            border: none;
-            outline: none;
-            color: #ffffff;
-            background: transparent;
-            font-family: inherit;
-            font-size: 13px;
-            cursor: pointer;
-            color-scheme: dark;
-        }
-
-        .date-control input::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-        }
-
-        .mode-switch {
-            display: flex;
-            padding: 3px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-        }
-
-        .mode-button {
-            border: none;
-            outline: none;
-            padding: 7px 11px;
-            border-radius: 7px;
-            background: transparent;
-            color: #777777;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .mode-button.active {
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-        }
-
-        .live-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 13px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: #aaaaaa;
-            font-size: 12px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4caf50;
-            box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
-            animation: pulse 1.8s infinite;
-        }
-
-        .live-dot.error {
-            background: #e90000;
-            box-shadow: 0 0 10px rgba(233, 0, 0, 0.8);
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.45;
-                transform: scale(0.8);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .report-button {
-            text-decoration: none;
-            border: none;
-            outline: none;
-            line-height: 1.1;
-            padding: 10px 16px;
-            border-radius: 30px;
-            background: var(--checkin);
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .report-button:hover {
-            background: #c20000;
-        }
-
-        /* =========================================================
-            REPORT MODAL
-        ========================================================= */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: #151515;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 30px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-header {
-            margin-bottom: 25px;
-        }
-
-        .modal-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .form-group input[type="date"] {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: white;
-            color-scheme: dark;
-            font-family: inherit;
-        }
-
-        .checkbox-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .checkbox-label input {
-            accent-color: var(--checkin);
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 30px;
-        }
-
-        .btn-cancel {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-cancel:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* =========================================================
-            CHART CARDS
-        ========================================================= */
-
-        .chart-card {
-            padding: 28px;
-            margin-bottom: 20px;
-            border-radius: 20px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .chart-header>div:first-child {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex: 1;
-            gap: 30px;
-        }
-
-        .chart-title {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .chart-info {
-            color: #777777;
-            font-size: 12px;
-        }
-
-        .chart-wrapper {
-            position: relative;
-            width: 100%;
-            height: 360px;
-        }
-
-        .error-message {
-            display: none;
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background: rgba(233, 0, 0, 0.10);
-            border: 1px solid rgba(233, 0, 0, 0.20);
-            color: #ff6b6b;
-            font-size: 14px;
-        }
-
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            color: var(--muted-dark);
-            font-size: 13px;
-        }
-
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .refresh-button {
-            visibility: hidden;
-            border: none;
-            outline: none;
-            padding: 10px 17px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.07);
-            color: #cccccc;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background 0.2s ease, opacity 0.2s ease;
-        }
-
-        .refresh-button:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .refresh-button:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        @media (max-width: 850px) {
-            body {
-                padding: 25px 15px;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .header-right {
-                width: 100%;
-                justify-content: flex-start;
-            }
-
-
-            .chart-header {
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .title-section h1 {
-                font-size: 26px;
-            }
-
-            .header-right {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .date-control {
-                justify-content: space-between;
-            }
-
-            .mode-switch {
-                width: 100%;
-            }
-
-            .mode-button {
-                flex: 1;
-            }
-
-            .live-status {
-                width: fit-content;
-            }
-
-
-            .stat-value {
-                font-size: 48px;
-            }
-
-            .chart-card {
-                padding: 20px;
-            }
-
-            .chart-wrapper {
-                height: 300px;
-            }
-
-            .footer {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -496,7 +48,7 @@
                 <div class="chart-title">Registration Trend</div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span class="stat-value-text" id="registered"
-                        style="color: #ffffff; font-size: 30px; font-weight: 700;">—</span>
+                        style="color: var(--fc-foreground); font-size: 30px; font-weight: 700;">—</span>
                 </div>
             </div>
             <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
@@ -521,7 +73,7 @@
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="stat-value-text" id="checkedIn"
-                            style="color: #e90000; font-size: 30px; font-weight: 700;">—</span>
+                            style="color: var(--fc-brand); font-size: 30px; font-weight: 700;">—</span>
                     </div>
                 </div>
             </div>
@@ -729,8 +281,8 @@
                     datasets: [{
                         label: "Registered Users",
                         data: values,
-                        borderColor: "#ffffff",
-                        backgroundColor: "rgba(255, 255, 255, 0.08)",
+                        borderColor: "#f7f5f2",
+                        backgroundColor: "rgba(247, 245, 242, 0.08)",
                         borderWidth: 2,
                         pointRadius: 4,
                         tension: 0.35,
@@ -743,10 +295,10 @@
                     plugins: {
                         legend: { display: false },
                         tooltip: {
-                            backgroundColor: "rgba(0, 0, 0, 0.8)",
-                            titleColor: "#ffffff",
-                            bodyColor: "#ffffff",
-                            borderColor: "#ffffff",
+                            backgroundColor: "rgba(10, 9, 8, 0.9)",
+                            titleColor: "#f7f5f2",
+                            bodyColor: "#f7f5f2",
+                            borderColor: "#3a3632",
                             borderWidth: 1,
                             padding: 10,
                             displayColors: false,
@@ -758,8 +310,8 @@
                         }
                     },
                     scales: {
-                        x: { grid: { color: "rgba(255, 255, 255, 0.05)" }, ticks: { color: "#777777" } },
-                        y: { beginAtZero: true, grid: { color: "rgba(255, 255, 255, 0.05)" }, ticks: { color: "#777777" } }
+                        x: { grid: { color: "rgba(58, 54, 50, 0.4)" }, ticks: { color: "#a8a39c" } },
+                        y: { beginAtZero: true, grid: { color: "rgba(58, 54, 50, 0.4)" }, ticks: { color: "#a8a39c" } }
                     }
                 }
             });
@@ -779,8 +331,8 @@
                     datasets: [{
                         label: "Checked In Users",
                         data: values,
-                        borderColor: "#e90000",
-                        backgroundColor: "rgba(233, 0, 0, 0.08)",
+                        borderColor: "#e86a6a",
+                        backgroundColor: "rgba(232, 106, 106, 0.12)",
                         borderWidth: 2,
                         pointRadius: 4,
                         tension: 0.35,
@@ -793,10 +345,10 @@
                     plugins: {
                         legend: { display: false },
                         tooltip: {
-                            backgroundColor: "rgba(0, 0, 0, 0.8)",
-                            titleColor: "#e90000",
-                            bodyColor: "#ffffff",
-                            borderColor: "#e90000",
+                            backgroundColor: "rgba(10, 9, 8, 0.9)",
+                            titleColor: "#e86a6a",
+                            bodyColor: "#f7f5f2",
+                            borderColor: "#e86a6a",
                             borderWidth: 1,
                             padding: 10,
                             displayColors: false,
@@ -808,8 +360,8 @@
                         }
                     },
                     scales: {
-                        x: { grid: { color: "rgba(255, 255, 255, 0.05)" }, ticks: { color: "#777777" } },
-                        y: { beginAtZero: true, grid: { color: "rgba(255, 255, 255, 0.05)" }, ticks: { color: "#777777" } }
+                        x: { grid: { color: "rgba(58, 54, 50, 0.4)" }, ticks: { color: "#a8a39c" } },
+                        y: { beginAtZero: true, grid: { color: "rgba(58, 54, 50, 0.4)" }, ticks: { color: "#a8a39c" } }
                     }
                 }
             });

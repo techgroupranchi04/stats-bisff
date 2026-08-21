@@ -2,12 +2,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
-    --bg: #090909;
-    --card: rgba(255, 255, 255, 0.055);
-    --border: rgba(255, 255, 255, 0.09);
-    --text: #ffffff;
-    --muted: #999999;
-    --muted-dark: #666666;
+    color-scheme: dark;
+    --fc-surface: #0a0908;
+    --fc-surface-elevated: #181614;
+    --fc-foreground: #f7f5f2;
+    --fc-foreground-muted: #d8d4cc;
+    --fc-foreground-subtle: #a8a39c;
+    --fc-border: #3a3632;
+    --fc-border-muted: #262321;
+    --fc-brand: #e86a6a;
+    --fc-brand-muted: #e86a6a6b;
+    --fc-success: #72dc96;
+    --fc-success-muted: #72dc964d;
+    --fc-warning: #e8c050;
+    --fc-warning-muted: #e8c0504d;
+    --fc-info: #7eb8f5;
+    --fc-info-muted: #7eb8f54d;
+    --fc-highlight: #6ed4e4;
+    --fc-highlight-muted: #6ed4e44d;
+    --fc-destructive: #f09890;
+    --fc-destructive-muted: #f098904d;
+    --fc-overlay: #080605d1;
+    --fc-brand-badge: #ffd4d4;
+    --fc-brand-badge-bg: #782828d9;
+    --fc-info-badge: #d4ebff;
+    --fc-info-badge-bg: #1c3a5fd9;
+    --fc-warning-badge: #ffe8a0;
+    --fc-warning-badge-bg: #644b1cd9;
+    --fc-success-badge: #c8f5dc;
+    --fc-success-badge-bg: #1c5034d9;
+    --fc-highlight-badge: #c8f0f8;
+    --fc-highlight-badge-bg: #184852d9;
+    --fc-destructive-badge: #ffd8d0;
+    --fc-destructive-badge-bg: #5f2824d9;
+    --fc-neutral-badge: #ece8e2;
+    --fc-neutral-badge-bg: #fff8f024;
+    --fc-star: #fbbf24;
+    --fc-star-muted: #4b5563;
+    --lightningcss-light: ;
+    --lightningcss-dark: initial;
+
+    --bg: var(--fc-surface);
+    --card: var(--fc-surface-elevated);
+    --border: var(--fc-border);
+    --text: var(--fc-foreground);
+    --muted: var(--fc-foreground-muted);
+    --muted-dark: var(--fc-foreground-subtle);
 }
 
 * {
@@ -23,7 +63,7 @@
 
 body {
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: radial-gradient(circle at top left, #321616 0%, #151515 35%, #090909 100%);
+    background: radial-gradient(circle at top left, #281414 0%, var(--fc-surface-elevated) 35%, var(--fc-surface) 100%);
     color: var(--text);
     display: flex;
     flex-direction: column;
@@ -38,8 +78,8 @@ body {
     min-height: 56px;
     padding: 10px 12px;
     background:
-        linear-gradient(120deg, rgba(233, 0, 0, 0.12), rgba(0, 0, 0, 0) 45%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+        linear-gradient(120deg, var(--fc-brand-muted), transparent 45%),
+        linear-gradient(180deg, var(--fc-surface-elevated), var(--fc-surface));
     backdrop-filter: blur(10px);
     display: flex;
     align-items: flex-start;
@@ -48,26 +88,27 @@ body {
     gap: 10px;
     position: relative;
     z-index: 100;
+    border-bottom: 1px solid var(--fc-border-muted);
 }
 
 .brand-logo-badge {
-    background: linear-gradient(135deg, #e90000, #951914);
-    color: #ffffff;
+    background: var(--fc-brand-badge-bg);
+    color: var(--fc-brand-badge);
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 800;
     font-size: 14px;
     padding: 6px 12px;
     border-radius: 999px;
     letter-spacing: 1px;
-    box-shadow: 0 2px 10px rgba(233, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 2px 10px var(--fc-brand-muted);
+    border: 1px solid var(--fc-brand-muted);
 }
 
 .brand-title {
     font-size: 14px;
     letter-spacing: 0.3px;
     line-height: 1.35;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--fc-foreground-muted);
 }
 
 .nav-controls {
@@ -79,7 +120,7 @@ body {
 }
 
 .btn-icon {
-    background: rgba(0, 0, 0, 0.35);
+    background: var(--fc-surface-elevated);
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -148,7 +189,7 @@ body {
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 11px;
     font-weight: 700;
-    color: #e90000;
+    color: var(--fc-brand);
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
@@ -208,7 +249,7 @@ body {
 }
 
 .card:hover {
-    border-color: rgba(233, 0, 0, 0.4);
+    border-color: var(--fc-brand-muted);
 }
 
 .card-title {
@@ -303,7 +344,7 @@ body {
 }
 
 .data-table th {
-    background-color: rgb(0, 0, 0);
+    background-color: var(--fc-surface);
     padding: 14px 12px;
     position: sticky;
     top: 0;
@@ -315,11 +356,11 @@ body {
 }
 
 .data-table tbody tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: var(--fc-surface-elevated);
 }
 
 .data-table tbody tr:hover {
-    background-color: rgba(233, 0, 0, 0.06);
+    background-color: var(--fc-brand-muted);
 }
 
 /* Badges */
@@ -333,29 +374,49 @@ body {
 }
 
 .badge-success {
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    background: var(--fc-success-badge-bg);
+    color: var(--fc-success-badge);
+    border: 1px solid var(--fc-success-muted);
 }
 
 .badge-warning {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: var(--fc-warning-badge-bg);
+    color: var(--fc-warning-badge);
+    border: 1px solid var(--fc-warning-muted);
 }
 
 .badge-brand {
-    background: rgba(233, 0, 0, 0.25);
-    border: 1px solid rgba(233, 0, 0, 0.4);
+    background: var(--fc-brand-badge-bg);
+    color: var(--fc-brand-badge);
+    border: 1px solid var(--fc-brand-muted);
 }
 
 .badge-neutral {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--muted);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--fc-neutral-badge-bg);
+    color: var(--fc-neutral-badge);
+    border: 1px solid var(--fc-border-muted);
+}
+
+.badge-info {
+    background: var(--fc-info-badge-bg);
+    color: var(--fc-info-badge);
+    border: 1px solid var(--fc-info-muted);
+}
+
+.badge-highlight {
+    background: var(--fc-highlight-badge-bg);
+    color: var(--fc-highlight-badge);
+    border: 1px solid var(--fc-highlight-muted);
+}
+
+.badge-destructive {
+    background: var(--fc-destructive-badge-bg);
+    color: var(--fc-destructive-badge);
+    border: 1px solid var(--fc-destructive-muted);
 }
 
 .code-badge {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--fc-border-muted);
     padding: 2px 6px;
     border-radius: 4px;
     color: var(--text);
@@ -364,7 +425,7 @@ body {
 }
 
 .btn-tab {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--fc-surface-elevated);
     color: var(--muted);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -376,15 +437,15 @@ body {
 }
 
 .btn-tab:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--fc-border-muted);
     color: var(--text);
 }
 
 .btn-tab.active {
-    background: rgba(233, 0, 0, 0.3);
-    color: #ffffff;
-    border-color: rgba(233, 0, 0, 0.5);
-    box-shadow: 0 0 10px rgba(233, 0, 0, 0.3);
+    background: var(--fc-brand-badge-bg);
+    color: var(--fc-brand-badge);
+    border-color: var(--fc-brand);
+    box-shadow: 0 0 10px var(--fc-brand-muted);
 }
 
 
@@ -394,14 +455,15 @@ body {
     margin-top: 10px;
     padding: 16px 12px;
     background:
-        linear-gradient(to left, rgba(233, 0, 0, 0.12), rgba(0, 0, 0, 0) 45%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+        linear-gradient(to left, var(--fc-brand-muted), transparent 45%),
+        linear-gradient(180deg, var(--fc-surface-elevated), var(--fc-surface));
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
+    border-top: 1px solid var(--fc-border-muted);
 }
 
 .slide-progress-dots {
@@ -415,18 +477,18 @@ body {
     width: 9px;
     height: 10px;
     border-radius: 50%;
-    background: var(--border);
+    background: var(--fc-border-muted);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--fc-border);
 }
 
 .dot.active {
-    background: #e90000;
+    background: var(--fc-brand);
     width: 30px;
     border-radius: 5px;
-    border-color: rgba(255, 255, 255, 0.35);
-    box-shadow: 0 0 14px rgba(233, 0, 0, 0.45);
+    border-color: var(--fc-brand-badge);
+    box-shadow: 0 0 14px var(--fc-brand-muted);
 }
 
 .footer-nav-controls {
