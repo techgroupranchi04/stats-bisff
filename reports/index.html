@@ -111,124 +111,173 @@
                 <div class="slide-title-group">
                     <span class="slide-tag"> Audience Demographics</span>
                     <h1 class="slide-title">Audience - Category Distribution</h1>
-                    <p class="slide-subtitle">Distribution of festival passes across 14 delegate categories.</p>
+                    <p class="slide-subtitle">Distribution of festival passes across delegate categories and Discovery Film track.</p>
                 </div>
             </div>
             <div class="slide-body">
-                <div class="grid-2">
-                    <div class="card">
-                        <div class="card-title">Audience Category Share (Registered)</div>
-                        <div class="chart-container">
-                            <canvas id="chartAudience"></canvas>
+                <div class="slide-2-layout">
+                    <!-- Left Column: Large Prominent Donut Chart -->
+                    <div class="slide-2-col-left">
+                        <div class="card slide-2-chart-card">
+                            <div class="card-title">Audience Category Share (Registered)</div>
+                            <div class="chart-container slide-2-chart-container">
+                                <canvas id="chartAudience"></canvas>
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-title">Delegate Breakdown Table</div>
-                        <div class="data-table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Registered</th>
-                                        <th>Checked-In</th>
-                                        <th>Share %</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>General Delegate</td>
-                                        <td>1,005</td>
-                                        <td>393</td>
-                                        <td>69.6%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cinephile</td>
-                                        <td>716</td>
-                                        <td>279</td>
-                                        <td>49.6%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pitcher</td>
-                                        <td>284</td>
-                                        <td>116</td>
-                                        <td>19.7%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Filmmaker</td>
-                                        <td>279</td>
-                                        <td>93</td>
-                                        <td>19.3%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Student / Senior</td>
-                                        <td>204</td>
-                                        <td>68</td>
-                                        <td>14.1%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Seller</td>
-                                        <td>83</td>
-                                        <td>30</td>
-                                        <td>5.7%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Guest</td>
-                                        <td>77</td>
-                                        <td>49</td>
-                                        <td>5.3%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Discovery Film</td>
-                                        <td>35</td>
-                                        <td>14</td>
-                                        <td>2.4%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Buyer</td>
-                                        <td>33</td>
-                                        <td>13</td>
-                                        <td>2.3%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Student</td>
-                                        <td>28</td>
-                                        <td>10</td>
-                                        <td>1.9%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Senior Citizen</td>
-                                        <td>28</td>
-                                        <td>11</td>
-                                        <td>1.9%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speaker</td>
-                                        <td>17</td>
-                                        <td>3</td>
-                                        <td>1.2%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Organizer</td>
-                                        <td>16</td>
-                                        <td>15</td>
-                                        <td>1.1%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Media</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>0.1%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                    <!-- Right Column: Delegate Table + Discovery Film Section -->
+                    <div class="slide-2-col-right">
+                        <!-- Delegate Breakdown Table Card -->
+                        <div class="card slide-2-table-card">
+                            <div class="card-title" style="margin-bottom: 8px;">Delegate Breakdown Table</div>
+                            <div class="data-table-wrapper" style="border: none;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Registered</th>
+                                            <th>Checked-In</th>
+                                            <th>Share %</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>General Delegate</strong></td>
+                                            <td>1,005</td>
+                                            <td>393</td>
+                                            <td>69.6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Cinephile</strong></td>
+                                            <td>716</td>
+                                            <td>279</td>
+                                            <td>49.6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Filmmaker</strong></td>
+                                            <td>279</td>
+                                            <td>93</td>
+                                            <td>19.3%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Student / Senior</strong></td>
+                                            <td>204</td>
+                                            <td>68</td>
+                                            <td>14.1%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Guest</strong></td>
+                                            <td>77</td>
+                                            <td>49</td>
+                                            <td>5.3%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Student</strong></td>
+                                            <td>28</td>
+                                            <td>10</td>
+                                            <td>1.9%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Senior Citizen</strong></td>
+                                            <td>28</td>
+                                            <td>11</td>
+                                            <td>1.9%</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Media</strong></td>
+                                            <td>2</td>
+                                            <td>2</td>
+                                            <td>0.1%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Discovery Film Section Card -->
+                        <div class="card slide-2-discovery-card">
+                            <div class="slide-2-discovery-header">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div class="card-title" style="margin-bottom: 0;">Discovery Film (Industry Track)</div>
+                                    <span class="badge badge-brand">4 Categories</span>
+                                </div>
+                                <span class="discovery-header-stat"><strong>468</strong> Reg • <strong>191</strong> Active <span class="badge badge-warning" style="font-size: 10px; padding: 1px 6px;">40.8%</span></span>
+                            </div>
+                            <div class="discovery-list">
+                                <div class="discovery-row">
+                                    <div class="discovery-cat">
+                                        <span class="discovery-dot" style="background: #b93b3b;"></span>
+                                        <strong>Pitcher</strong>
+                                    </div>
+                                    <div class="discovery-numbers">
+                                        <span><strong>316</strong> Reg</span>
+                                        <span><strong>133</strong> Checked-in</span>
+                                        <span class="badge badge-warning" style="font-size: 10px; padding: 1px 6px;">42.1%</span>
+                                    </div>
+                                </div>
+                                <div class="discovery-row">
+                                    <div class="discovery-cat">
+                                        <span class="discovery-dot" style="background: #c28723;"></span>
+                                        <strong>Seller</strong>
+                                    </div>
+                                    <div class="discovery-numbers">
+                                        <span><strong>97</strong> Reg</span>
+                                        <span><strong>38</strong> Checked-in</span>
+                                        <span class="badge badge-warning" style="font-size: 10px; padding: 1px 6px;">39.2%</span>
+                                    </div>
+                                </div>
+                                <div class="discovery-row">
+                                    <div class="discovery-cat">
+                                        <span class="discovery-dot" style="background: #2d6fa8;"></span>
+                                        <strong>Buyer</strong>
+                                    </div>
+                                    <div class="discovery-numbers">
+                                        <span><strong>36</strong> Reg</span>
+                                        <span><strong>15</strong> Checked-in</span>
+                                        <span class="badge badge-warning" style="font-size: 10px; padding: 1px 6px;">41.7%</span>
+                                    </div>
+                                </div>
+                                <div class="discovery-row">
+                                    <div class="discovery-cat">
+                                        <span class="discovery-dot" style="background: #716a62;"></span>
+                                        <strong>Speaker</strong>
+                                    </div>
+                                    <div class="discovery-numbers">
+                                        <span><strong>19</strong> Reg</span>
+                                        <span><strong>5</strong> Checked-in</span>
+                                        <span class="badge badge-neutral" style="font-size: 10px; padding: 1px 6px;">26.3%</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 3: ATTENDANCE PER VENUE/EVENT -->
+        <!-- SLIDE 3: TURN-OUT CHART -->
         <section class="slide" id="slide-3">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="slide-tag"> Turnout Benchmark</span>
+                    <h1 class="slide-title">Turn-Out Rate Comparison Chart</h1>
+                    <p class="slide-subtitle">Comparative turnout percentage across registered delegate categories.
+                    </p>
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="card" style="width: 100%;">
+                    <div class="card-title">Category Turnout Rate (%)</div>
+                    <div class="chart-container turnout-chart-container">
+                        <canvas id="chartTurnoutBar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: ATTENDANCE PER VENUE/EVENT -->
+        <section class="slide" id="slide-4">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Content Preference</span>
@@ -345,8 +394,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 4: VENUE CHART -->
-        <section class="slide" id="slide-4">
+        <!-- SLIDE 5: VENUE CHART -->
+        <section class="slide" id="slide-5">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Venue Benchmark</span>
@@ -366,8 +415,45 @@
         </section>
 
 
-        <!-- SLIDE 5: VERIFICATION QUERY BREAKDOWN -->
-        <section class="slide" id="slide-5">
+        <!-- SLIDE 6: EVENT-WISE CHECK-INS BY DATE -->
+        <section class="slide" id="slide-6">
+            <div class="slide-header">
+                <div class="slide-title-group">
+                    <span class="slide-tag">Festival Check-in Analytics</span>
+                    <h1 class="slide-title">Event-wise Check-ins by Date</h1>
+                    <p class="slide-subtitle">Compare actual check-ins for each scheduled event.</p>
+                </div>
+                <div class="date-control-wrapper" style="display: flex; align-items: center; gap: 8px;">
+                    <label for="dateSelect"
+                        style="font-size: 12px; font-weight: 700; color: var(--muted);">Date:</label>
+                    <select id="dateSelect"
+                        style="padding: 6px 12px; border-radius: 8px; background: #ffffff; color: var(--text); border: 1px solid var(--border); font-family: inherit; font-size: 13px; cursor: pointer;">
+                        <option value="14-Aug-2026" selected>14 August 2026</option>
+                        <option value="15-Aug-2026">15 August 2026</option>
+                        <option value="16-Aug-2026">16 August 2026</option>
+                    </select>
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="card" style="width: 100%; display: flex; flex-direction: column; height: 100%;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <div>
+                            <div class="card-title" id="chartEventTitle" style="margin-bottom: 2px;">Event-wise
+                                check-ins (time order)</div>
+                            <div id="chartEventNote" style="font-size: 12px; color: var(--muted);"></div>
+                        </div>
+                    </div>
+                    <div class="chart-container" style="position: relative; flex: 1; min-height: 380px;">
+                        <canvas id="chartEventCheckins"></canvas>
+                    </div>
+                    <div id="zeroCheckinContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: VERIFICATION QUERY BREAKDOWN -->
+        <section class="slide" id="slide-7">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag">
@@ -436,7 +522,7 @@
                             </table>
                         </div>
                         <div
-                            style="margin-top: 10px; padding: 10px 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted); line-height: 1.4;">
+                            style="margin-top: 10px; padding: 10px 12px; background: #faf8f5; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; color: var(--muted); line-height: 1.4;">
                             <strong>Key Insight:</strong> A total of 105 events are distributed across 9 unique
                             venues.
                         </div>
@@ -454,150 +540,137 @@
             </div>
         </section>
 
-        <!-- SLIDE 6: PEAK HOURS BY DAY & TIME -->
-        <section class="slide" id="slide-6">
+        <!-- SLIDE 8: PEAK HOURS BY DAY & TIME -->
+        <section class="slide" id="slide-8">
             <div class="slide-header">
                 <div class="slide-title-group">
                     <span class="slide-tag"> Traffic Dynamics</span>
-                    <h1 class="slide-title">Peak Hour Analysis by Day & Time</h1>
-                    <p class="slide-subtitle">Identification of the absolute peak hour across the festival and daily
-                        footfall distribution.</p>
+                    <h1 class="slide-title">Peak Hour Analysis by Time Window</h1>
+                    <p class="slide-subtitle">Hourly distribution of actual check-in scans across the festival.</p>
+                </div>
+                <div class="date-control-wrapper" style="display: flex; align-items: center; gap: 8px;">
+                    <label for="peakDaySelect"
+                        style="font-size: 12px; font-weight: 700; color: var(--muted);">View Day:</label>
+                    <select id="peakDaySelect"
+                        style="padding: 6px 12px; border-radius: 8px; background: #ffffff; color: var(--text); border: 1px solid var(--border); font-family: inherit; font-size: 13px; cursor: pointer;">
+                        <option value="all" selected>All Festival Days (Overall)</option>
+                        <option value="14-Aug-2026">Friday, 14 Aug 2026</option>
+                        <option value="15-Aug-2026">Saturday, 15 Aug 2026 (Peak Day ⭐)</option>
+                        <option value="16-Aug-2026">Sunday, 16 Aug 2026</option>
+                    </select>
                 </div>
             </div>
             <div class="slide-body">
                 <div class="grid-2">
                     <!-- Left Card: Grouped Bar Chart -->
                     <div class="card">
-                        <div class="card-title">Hourly Footfall Comparison by Day & Time Window</div>
+                        <div class="card-title" id="peakChartTitle">Hourly Footfall Distribution (09:00 AM – 08:00 PM)</div>
                         <div class="chart-container">
                             <canvas id="chartPeakHours"></canvas>
                         </div>
                     </div>
-                    <!-- Right Card: Peak Breakdown & Daily Winners -->
+                    <!-- Right Card: Peak Breakdown & Intelligence -->
                     <div class="card">
-                        <div class="card-title">Peak Hour Breakdown by Day</div>
+                        <div class="card-title" id="peakBreakdownTitle">Peak Hour Breakdown</div>
                         <div
-                            style="display: flex; flex-direction: column; gap: 12px; height: 100%; justify-content: space-between;">
+                            style="display: flex; flex-direction: column; gap: 10px; height: 100%; justify-content: space-between;">
 
                             <!-- Absolute Peak Banner -->
-                            <div class="kpi-card" style="padding: 16px; border-left: 4px solid var(--fc-brand);">
-                                <span class="kpi-label">⭐ Absolute Festival Peak Hour</span>
-                                <div class="kpi-highlight" style="font-size: 26px; margin: 6px 0;">Saturday,
-                                    Aug 15 @ 06:00 AM</div>
-                                <span class="kpi-sub"><strong style="color: var(--fc-brand); font-size: 15px;">192 Scans
-                                        Logged</strong> (Followed by Sat 09:00 AM with 185 scans)</span>
+                            <div class="kpi-card" style="padding: 14px; border-left: 4px solid var(--fc-brand);">
+                                <span class="kpi-label" id="peakKpiLabel">⭐ Absolute Festival Peak Window</span>
+                                <div class="kpi-highlight" id="peakKpiValue" style="font-size: 22px; margin: 4px 0;">12:00 PM – 01:00 PM</div>
+                                <span class="kpi-sub" id="peakKpiSub"><strong style="color: var(--fc-brand); font-size: 14px;">425 Scans Logged</strong> (Followed by 02:00 PM – 03:00 PM with 372 scans)</span>
                             </div>
 
-                            <!-- Daily Peak Breakdown Table -->
+                            <!-- Hourly Peak Breakdown Table -->
                             <div class="data-table-wrapper" style="max-height: 220px;">
                                 <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th>Day & Date</th>
-                                            <th>Peak Time Window</th>
-                                            <th>Peak Scans</th>
-                                            <th>Total Day Scans</th>
+                                            <th>Time Window</th>
+                                            <th>Scans Logged</th>
+                                            <th>Share %</th>
+                                            <th>Activity Tag</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr style="background: var(--fc-brand-muted);">
-                                            <td><strong>Saturday, Aug 15</strong> <span class="badge badge-brand">Peak
-                                                    Day</span></td>
-                                            <td><strong>06:00 AM</strong> (Runner up: 09:00 AM)</td>
-                                            <td><span class="badge badge-brand" style="font-size: 13px;">192
-                                                    Scans</span></td>
-                                            <td>1,014 Scans</td>
+                                    <tbody id="peakTableBody">
+                                        <tr style="background: rgba(185, 59, 59, 0.08);">
+                                            <td><strong>12:00 PM – 01:00 PM</strong></td>
+                                            <td><span class="badge badge-brand">425 Scans</span></td>
+                                            <td>17.3%</td>
+                                            <td><strong>Peak Morning/Lunch</strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Sunday, Aug 16</strong></td>
-                                            <td><strong>09:00 AM</strong> (Runner up: 06:00 AM)</td>
-                                            <td><span class="badge badge-success">157 Scans</span></td>
-                                            <td>803 Scans</td>
+                                            <td><strong>02:00 PM – 03:00 PM</strong></td>
+                                            <td><span class="badge badge-warning">372 Scans</span></td>
+                                            <td>15.1%</td>
+                                            <td><strong>Afternoon Peak</strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Friday, Aug 14</strong></td>
-                                            <td><strong>09:00 AM</strong> (Runner up: 06:00 AM)</td>
-                                            <td><span class="badge badge-success">90 Scans</span></td>
-                                            <td>634 Scans</td>
+                                            <td><strong>11:00 AM – 12:00 PM</strong></td>
+                                            <td>365 Scans</td>
+                                            <td>14.8%</td>
+                                            <td>Late Morning Rush</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Thursday, Aug 13</strong></td>
-                                            <td><strong>06:00 AM</strong> (Soft Launch)</td>
-                                            <td><span>6 Scans</span></td>
-                                            <td>9 Scans</td>
+                                            <td><strong>10:00 AM – 11:00 AM</strong></td>
+                                            <td>324 Scans</td>
+                                            <td>13.2%</td>
+                                            <td>Morning Surge</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>03:00 PM – 04:00 PM</strong></td>
+                                            <td>264 Scans</td>
+                                            <td>10.7%</td>
+                                            <td>Afternoon Session</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>04:00 PM – 05:00 PM</strong></td>
+                                            <td>175 Scans</td>
+                                            <td>7.1%</td>
+                                            <td>Evening Transition</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>01:00 PM – 02:00 PM</strong></td>
+                                            <td>128 Scans</td>
+                                            <td>5.2%</td>
+                                            <td>Lunch Break</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>09:00 AM – 10:00 AM</strong></td>
+                                            <td>125 Scans</td>
+                                            <td>5.1%</td>
+                                            <td>Earliest Arrivals (~09:27 AM)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>05:00 PM – 06:00 PM</strong></td>
+                                            <td>125 Scans</td>
+                                            <td>5.1%</td>
+                                            <td>Late Afternoon</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>06:00 PM – 07:00 PM</strong></td>
+                                            <td>82 Scans</td>
+                                            <td>3.3%</td>
+                                            <td>Evening Screenings</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>07:00 PM – 08:00 PM</strong></td>
+                                            <td>75 Scans</td>
+                                            <td>3.0%</td>
+                                            <td>Closing Shows</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <div
-                                style="padding: 10px 12px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; font-size: 12px; color: var(--muted); line-height: 1.4;">
-                                <strong>Key Intelligence:</strong> Saturday Aug 15 recorded the highest single-hour rush
-                                (192 scans at 06:00 AM) and highest daily turnout (1,014 scans). Across all major days,
-                                peak activity consistently clustered around the <strong>06:00 AM</strong> and
-                                <strong>09:00 AM</strong> morning screening arrivals.
+                            <div id="peakIntelText"
+                                style="padding: 10px 12px; background: #faf8f5; border: 1px solid var(--border); border-radius: 8px; font-size: 11.5px; color: var(--muted); line-height: 1.4;">
+                                <strong>Key Intelligence:</strong> Check-in gates begin active arrivals at <strong>09:27 AM</strong> (no check-ins prior to 09:00 AM). Footfall surges to its primary peak at <strong>12:00 PM – 01:00 PM</strong> (425 scans), dips briefly during lunch, and rebounds for a strong secondary rush at <strong>02:00 PM – 03:00 PM</strong> (372 scans).
                             </div>
 
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- SLIDE 7: TURN-OUT CHART -->
-        <section class="slide" id="slide-7">
-            <div class="slide-header">
-                <div class="slide-title-group">
-                    <span class="slide-tag"> Turnout Benchmark</span>
-                    <h1 class="slide-title">Turn-Out Rate Comparison Chart</h1>
-                    <p class="slide-subtitle">Comparative turnout percentage across all registered delegate categories.
-                    </p>
-                </div>
-            </div>
-            <div class="slide-body">
-                <div class="card" style="width: 100%;">
-                    <div class="card-title">Category Turnout Rate (%)</div>
-                    <div class="chart-container turnout-chart-container">
-                        <canvas id="chartTurnoutBar"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 8: EVENT-WISE CHECK-INS BY DATE -->
-        <section class="slide" id="slide-8">
-            <div class="slide-header">
-                <div class="slide-title-group">
-                    <span class="slide-tag">Festival Check-in Analytics</span>
-                    <h1 class="slide-title">Event-wise Check-ins by Date</h1>
-                    <p class="slide-subtitle">Compare actual check-ins for each scheduled event.</p>
-                </div>
-                <div class="date-control-wrapper" style="display: flex; align-items: center; gap: 8px;">
-                    <label for="dateSelect"
-                        style="font-size: 12px; font-weight: 700; color: var(--muted);">Date:</label>
-                    <select id="dateSelect"
-                        style="padding: 6px 12px; border-radius: 8px; background: #ffffff; color: var(--text); border: 1px solid var(--border); font-family: inherit; font-size: 13px; cursor: pointer;">
-                        <option value="14-Aug-2026" selected>14 August 2026</option>
-                        <option value="15-Aug-2026">15 August 2026</option>
-                        <option value="16-Aug-2026">16 August 2026</option>
-                    </select>
-                </div>
-            </div>
-            <div class="slide-body">
-                <div class="card" style="width: 100%; display: flex; flex-direction: column; height: 100%;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                        <div>
-                            <div class="card-title" id="chartEventTitle" style="margin-bottom: 2px;">Event-wise
-                                check-ins (time order)</div>
-                            <div id="chartEventNote" style="font-size: 12px; color: var(--muted);"></div>
-                        </div>
-                    </div>
-                    <div class="chart-container" style="position: relative; flex: 1; min-height: 380px;">
-                        <canvas id="chartEventCheckins"></canvas>
-                    </div>
-                    <div id="zeroCheckinContainer"></div>
                 </div>
             </div>
         </section>

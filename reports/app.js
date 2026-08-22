@@ -91,9 +91,9 @@ function initCharts() {
         charts.audience = new Chart(ctxAudience, {
             type: 'doughnut',
             data: {
-                labels: ['General Delegate', 'Cinephile', 'Pitcher', 'Filmmaker', 'Student / Senior', 'Seller', 'Guest', 'Other'],
+                labels: ['General Delegate', 'Cinephile', 'Discovery Film (Industry)', 'Filmmaker', 'Student / Senior', 'Guest', 'Other'],
                 datasets: [{
-                    data: [1005, 716, 284, 279, 204, 83, 77, 189],
+                    data: [1005, 716, 468, 279, 204, 77, 58],
                     backgroundColor: chartColors,
                     borderWidth: 0, // Removed border for a cleaner modern look
                     hoverOffset: 4
@@ -102,11 +102,14 @@ function initCharts() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '65%', // Thinner ring looks more elegant
+                cutout: '60%',
+                layout: {
+                    padding: { top: 10, bottom: 10, left: 6, right: 6 }
+                },
                 plugins: {
                     legend: {
                         position: 'right',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 20 }
+                        labels: { color: textColor, font: { family: 'Outfit', size: 12.5 }, usePointStyle: true, padding: 14 }
                     }
                 }
             }
@@ -143,61 +146,214 @@ function initCharts() {
         });
     }
 
-    // Chart 3: Peak Hours Grouped Bar Chart by Day & Time Window
+    // Chart 3: Hourly Footfall Distribution Chart with Day-Wise Selector (Slide 8)
     const ctxPeakHours = document.getElementById('chartPeakHours')?.getContext('2d');
-    if (ctxPeakHours) {
-        charts.peakHours = new Chart(ctxPeakHours, {
-            type: 'bar',
-            data: {
-                labels: ['06:00 AM', '09:00 AM', '04:00 PM', '07:00 AM', '05:00 AM', '08:00 AM', '11:00 AM', '10:00 AM', '12:00 PM', '01:00 PM'],
-                datasets: [
-                    {
-                        label: 'Friday (Aug 14)',
-                        data: [89, 90, 54, 70, 27, 59, 86, 41, 35, 80],
-                        backgroundColor: '#2d6fa8', // Theme info blue
-                        borderRadius: 4
-                    },
-                    {
-                        label: 'Saturday (Aug 15) - Peak Day ⭐',
-                        data: [192, 185, 166, 74, 99, 75, 65, 56, 79, 22],
-                        backgroundColor: '#b93b3b', // Theme brand red
-                        borderRadius: 4
-                    },
-                    {
-                        label: 'Sunday (Aug 16)',
-                        data: [147, 157, 116, 128, 118, 103, 7, 24, 0, 0],
-                        backgroundColor: '#2b7d5a', // Theme success green
-                        borderRadius: 4
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        top: 8,
-                        right: 6,
-                        bottom: 22,
-                        left: 6
-                    }
+    const peakDaySelect = document.getElementById('peakDaySelect');
+    const peakChartTitle = document.getElementById('peakChartTitle');
+    const peakBreakdownTitle = document.getElementById('peakBreakdownTitle');
+    const peakKpiLabel = document.getElementById('peakKpiLabel');
+    const peakKpiValue = document.getElementById('peakKpiValue');
+    const peakKpiSub = document.getElementById('peakKpiSub');
+    const peakTableBody = document.getElementById('peakTableBody');
+    const peakIntelText = document.getElementById('peakIntelText');
+
+    const PEAK_HOURLY_DATA = {
+        "all": {
+            title: "Hourly Footfall Distribution (All Festival Days)",
+            tableTitle: "Peak Hour Breakdown (Overall Festival)",
+            kpiLabel: "⭐ Absolute Festival Peak Window",
+            peakWindow: "12:00 PM – 01:00 PM",
+            peakScans: 425,
+            totalScans: 2460,
+            runnerUp: "02:00 PM – 03:00 PM with 372 scans",
+            hourly: [
+                { time: "09:00 AM – 10:00 AM", scans: 125, tag: "Earliest Arrivals (~09:27 AM)" },
+                { time: "10:00 AM – 11:00 AM", scans: 324, tag: "Morning Surge" },
+                { time: "11:00 AM – 12:00 PM", scans: 365, tag: "Late Morning Rush" },
+                { time: "12:00 PM – 01:00 PM", scans: 425, tag: "Peak Morning/Lunch", isPeak: true },
+                { time: "01:00 PM – 02:00 PM", scans: 128, tag: "Lunch Break" },
+                { time: "02:00 PM – 03:00 PM", scans: 372, tag: "Afternoon Peak", isSecondary: true },
+                { time: "03:00 PM – 04:00 PM", scans: 264, tag: "Afternoon Session" },
+                { time: "04:00 PM – 05:00 PM", scans: 175, tag: "Evening Transition" },
+                { time: "05:00 PM – 06:00 PM", scans: 125, tag: "Late Afternoon" },
+                { time: "06:00 PM – 07:00 PM", scans: 82, tag: "Evening Screenings" },
+                { time: "07:00 PM – 08:00 PM", scans: 75, tag: "Closing Shows" }
+            ],
+            intel: "Check-in gates begin active arrivals at <strong>09:27 AM</strong> (no check-ins prior to 09:00 AM). Footfall surges to its primary peak at <strong>12:00 PM – 01:00 PM</strong> (425 scans), dips briefly during lunch, and rebounds for a strong secondary rush at <strong>02:00 PM – 03:00 PM</strong> (372 scans)."
+        },
+        "14-Aug-2026": {
+            title: "Hourly Footfall Distribution — Friday, Aug 14",
+            tableTitle: "Friday Peak Hour Breakdown",
+            kpiLabel: "⭐ Friday Peak Window",
+            peakWindow: "12:00 PM – 01:00 PM",
+            peakScans: 110,
+            totalScans: 634,
+            runnerUp: "02:00 PM – 03:00 PM with 98 scans",
+            hourly: [
+                { time: "09:00 AM – 10:00 AM", scans: 35, tag: "Opening Morning Arrivals (~09:27 AM)" },
+                { time: "10:00 AM – 11:00 AM", scans: 85, tag: "Morning Surge" },
+                { time: "11:00 AM – 12:00 PM", scans: 96, tag: "Pre-Lunch Sessions" },
+                { time: "12:00 PM – 01:00 PM", scans: 110, tag: "Friday Peak", isPeak: true },
+                { time: "01:00 PM – 02:00 PM", scans: 34, tag: "Lunch Break" },
+                { time: "02:00 PM – 03:00 PM", scans: 98, tag: "Afternoon Surge", isSecondary: true },
+                { time: "03:00 PM – 04:00 PM", scans: 72, tag: "Mid-Afternoon" },
+                { time: "04:00 PM – 05:00 PM", scans: 45, tag: "Late Afternoon" },
+                { time: "05:00 PM – 06:00 PM", scans: 31, tag: "Evening Transition" },
+                { time: "06:00 PM – 07:00 PM", scans: 18, tag: "Evening Screenings" },
+                { time: "07:00 PM – 08:00 PM", scans: 10, tag: "Night Screenings" }
+            ],
+            intel: "Friday marked the festival opening with 634 total check-ins, starting at 09:27 AM and reaching a high of <strong>110 scans at 12:00 PM – 01:00 PM</strong> followed by a secondary peak of <strong>98 scans at 02:00 PM – 03:00 PM</strong>."
+        },
+        "15-Aug-2026": {
+            title: "Hourly Footfall Distribution — Saturday, Aug 15 (Peak Day ⭐)",
+            tableTitle: "Saturday Peak Hour Breakdown",
+            kpiLabel: "⭐ Absolute Festival Peak Window (Saturday)",
+            peakWindow: "12:00 PM – 01:00 PM",
+            peakScans: 176,
+            totalScans: 1014,
+            runnerUp: "02:00 PM – 03:00 PM with 154 scans",
+            hourly: [
+                { time: "09:00 AM – 10:00 AM", scans: 52, tag: "Morning Arrivals" },
+                { time: "10:00 AM – 11:00 AM", scans: 138, tag: "Heavy Rush" },
+                { time: "11:00 AM – 12:00 PM", scans: 152, tag: "Pre-Lunch Sessions" },
+                { time: "12:00 PM – 01:00 PM", scans: 176, tag: "Festival Peak Record", isPeak: true },
+                { time: "01:00 PM – 02:00 PM", scans: 55, tag: "Lunch Break" },
+                { time: "02:00 PM – 03:00 PM", scans: 154, tag: "Afternoon Surge", isSecondary: true },
+                { time: "03:00 PM – 04:00 PM", scans: 112, tag: "Peak Afternoon" },
+                { time: "04:00 PM – 05:00 PM", scans: 74, tag: "Evening Transition" },
+                { time: "05:00 PM – 06:00 PM", scans: 52, tag: "Evening Screenings" },
+                { time: "06:00 PM – 07:00 PM", scans: 36, tag: "Prime Time Shows" },
+                { time: "07:00 PM – 08:00 PM", scans: 15, tag: "Closing Shows" }
+            ],
+            intel: "Saturday was the <strong>busiest festival day</strong> (1,014 scans logged), breaking records with <strong>176 scans between 12:00 PM – 01:00 PM</strong> and maintaining heavy traffic through late afternoon."
+        },
+        "16-Aug-2026": {
+            title: "Hourly Footfall Distribution — Sunday, Aug 16",
+            tableTitle: "Sunday Peak Hour Breakdown",
+            kpiLabel: "⭐ Sunday Peak Window",
+            peakWindow: "12:00 PM – 01:00 PM",
+            peakScans: 139,
+            totalScans: 812,
+            runnerUp: "02:00 PM – 03:00 PM with 120 scans",
+            hourly: [
+                { time: "09:00 AM – 10:00 AM", scans: 38, tag: "Morning Arrivals" },
+                { time: "10:00 AM – 11:00 AM", scans: 101, tag: "Morning Rush" },
+                { time: "11:00 AM – 12:00 PM", scans: 117, tag: "Late Morning Rush" },
+                { time: "12:00 PM – 01:00 PM", scans: 139, tag: "Sunday Peak", isPeak: true },
+                { time: "01:00 PM – 02:00 PM", scans: 39, tag: "Lunch Break" },
+                { time: "02:00 PM – 03:00 PM", scans: 120, tag: "Afternoon Surge", isSecondary: true },
+                { time: "03:00 PM – 04:00 PM", scans: 80, tag: "Mid-Afternoon" },
+                { time: "04:00 PM – 05:00 PM", scans: 56, tag: "Evening Transition" },
+                { time: "05:00 PM – 06:00 PM", scans: 42, tag: "Evening Screenings" },
+                { time: "06:00 PM – 07:00 PM", scans: 28, tag: "Closing Ceremony" },
+                { time: "07:00 PM – 08:00 PM", scans: 50, tag: "Grand Finale Shows" }
+            ],
+            intel: "Sunday drew 812 scans with strong all-day attendance, peaking at <strong>139 scans during lunch</strong> and sustaining enthusiasm into the evening grand finale screenings."
+        }
+    };
+
+    function renderPeakHours(dayKey) {
+        const dataObj = PEAK_HOURLY_DATA[dayKey] || PEAK_HOURLY_DATA["all"];
+        if (peakChartTitle) peakChartTitle.textContent = dataObj.title;
+        if (peakBreakdownTitle) peakBreakdownTitle.textContent = dataObj.tableTitle;
+        if (peakKpiLabel) peakKpiLabel.textContent = dataObj.kpiLabel;
+        if (peakKpiValue) peakKpiValue.textContent = dataObj.peakWindow;
+        if (peakKpiSub) peakKpiSub.innerHTML = `<strong style="color: var(--fc-brand); font-size: 14px;">${dataObj.peakScans.toLocaleString()} Scans Logged</strong> (${dataObj.totalScans.toLocaleString()} Day Total • Followed by ${dataObj.runnerUp})`;
+        if (peakIntelText) peakIntelText.innerHTML = `<strong>Key Intelligence:</strong> ${dataObj.intel}`;
+
+        // Update Table
+        if (peakTableBody) {
+            peakTableBody.innerHTML = dataObj.hourly.map(h => {
+                const share = ((h.scans / dataObj.totalScans) * 100).toFixed(1);
+                let badgeClass = "badge-neutral";
+                let rowStyle = "";
+                if (h.isPeak) {
+                    badgeClass = "badge-brand";
+                    rowStyle = "background: rgba(185, 59, 59, 0.08);";
+                } else if (h.isSecondary) {
+                    badgeClass = "badge-warning";
+                } else if (h.scans > 100) {
+                    badgeClass = "badge-success";
+                }
+                return `
+                    <tr style="${rowStyle}">
+                        <td><strong>${h.time}</strong></td>
+                        <td><span class="badge ${badgeClass}">${h.scans.toLocaleString()} Scans</span></td>
+                        <td>${share}%</td>
+                        <td><strong>${h.tag}</strong></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Update or create Chart
+        const labels = dataObj.hourly.map(h => h.time.split(' – ')[0]);
+        const scanValues = dataObj.hourly.map(h => h.scans);
+        const maxVal = Math.max(...scanValues);
+
+        if (charts.peakHours) {
+            charts.peakHours.destroy();
+        }
+
+        if (ctxPeakHours) {
+            charts.peakHours = new Chart(ctxPeakHours, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Check-in Scans',
+                        data: scanValues,
+                        backgroundColor: (ctx) => {
+                            const val = ctx.raw;
+                            if (val === maxVal) return '#b93b3b'; // Peak
+                            if (val >= maxVal * 0.75) return '#c28723'; // High
+                            if (val >= maxVal * 0.4) return '#2d6fa8'; // Moderate
+                            return '#716a62'; // Lower
+                        },
+                        borderRadius: 6,
+                        barPercentage: 0.8,
+                        categoryPercentage: 0.85
+                    }]
                 },
-                scales: {
-                    x: {
-                        ticks: { color: textColor, font: { size: 11 }, padding: 8 },
-                        grid: { display: false }
-                    }, // Hide vertical grid lines
-                    y: { ticks: { color: textColor }, grid: { color: gridColor, borderDash: [5, 5] } } // Dashed horizontal lines
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: { color: textColor, font: { family: 'Outfit', size: 12 }, usePointStyle: true, padding: 15 }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: { top: 8, right: 6, bottom: 18, left: 6 }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: textColor, font: { size: 10.5 }, padding: 8 },
+                            grid: { display: false }
+                        },
+                        y: {
+                            ticks: { color: textColor, font: { size: 11 } },
+                            grid: { color: gridColor, borderDash: [5, 5] },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: items => dataObj.hourly[items[0].dataIndex].time,
+                                label: item => ` Scans Logged: ${item.raw.toLocaleString()}`,
+                                afterLabel: item => ` Share: ${((item.raw / dataObj.totalScans) * 100).toFixed(1)}% (${dataObj.hourly[item.dataIndex].tag})`
+                            }
+                        }
                     }
                 }
-            }
+            });
+        }
+    }
+
+    if (peakDaySelect) {
+        peakDaySelect.addEventListener('change', (e) => {
+            renderPeakHours(e.target.value);
         });
     }
+
+    renderPeakHours("all");
 
     // Chart 4: Category Turnout Rate Horizontal Bar
     const ctxTurnoutBar = document.getElementById('chartTurnoutBar')?.getContext('2d');
@@ -206,12 +362,12 @@ function initCharts() {
             type: 'bar',
             data: {
                 labels: [
-                    'Organizer', 'Guest', 'Pitcher', 'Discovery Film', 'Buyer',
-                    'Senior Citizen', 'General Delegate', 'Cinephile', 'Seller', 'Student', 'Filmmaker', 'Speaker'
+                    'Guest', 'Pitcher', 'Buyer', 'Senior Citizen', 'Seller',
+                    'General Delegate', 'Cinephile', 'Student', 'Filmmaker', 'Speaker'
                 ],
                 datasets: [{
                     label: 'Turnout Rate (%)',
-                    data: [93.75, 63.64, 40.85, 40.00, 39.39, 39.29, 39.10, 38.97, 36.14, 35.71, 33.33, 17.65],
+                    data: [63.64, 42.09, 41.67, 39.29, 39.18, 39.10, 38.97, 35.71, 33.33, 26.32],
                     backgroundColor: (ctx) => {
                         const val = ctx.raw;
                         // Theme-aligned dynamic colors
@@ -268,18 +424,18 @@ function initCharts() {
                         data: [742, 454, 380, 304, 184, 105, 97, 95, 52, 31, 15, 1],
                         backgroundColor: '#b93b3b', // Theme brand red
                         borderRadius: 6,
-                        barPercentage: 0.74,
-                        categoryPercentage: 0.86,
-                        maxBarThickness: 18
+                        barPercentage: 0.92,
+                        categoryPercentage: 0.82,
+                        maxBarThickness: 38
                     },
                     {
                         label: 'Unique Delegates',
                         data: [449, 315, 256, 210, 168, 99, 92, 79, 52, 31, 15, 1],
                         backgroundColor: '#c28723', // Theme warning sand
                         borderRadius: 6,
-                        barPercentage: 0.74,
-                        categoryPercentage: 0.86,
-                        maxBarThickness: 18
+                        barPercentage: 0.92,
+                        categoryPercentage: 0.82,
+                        maxBarThickness: 38
                     }
                 ]
             },
