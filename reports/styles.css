@@ -2,45 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
-    color-scheme: dark;
-    --fc-surface: #0a0908;
-    --fc-surface-elevated: #181614;
-    --fc-foreground: #f7f5f2;
-    --fc-foreground-muted: #d8d4cc;
-    --fc-foreground-subtle: #a8a39c;
-    --fc-border: #3a3632;
-    --fc-border-muted: #262321;
-    --fc-brand: #e86a6a;
-    --fc-brand-muted: #e86a6a6b;
-    --fc-success: #72dc96;
-    --fc-success-muted: #72dc964d;
-    --fc-warning: #e8c050;
-    --fc-warning-muted: #e8c0504d;
-    --fc-info: #7eb8f5;
-    --fc-info-muted: #7eb8f54d;
-    --fc-highlight: #6ed4e4;
-    --fc-highlight-muted: #6ed4e44d;
-    --fc-destructive: #f09890;
-    --fc-destructive-muted: #f098904d;
-    --fc-overlay: #080605d1;
-    --fc-brand-badge: #ffd4d4;
-    --fc-brand-badge-bg: #782828d9;
-    --fc-info-badge: #d4ebff;
-    --fc-info-badge-bg: #1c3a5fd9;
-    --fc-warning-badge: #ffe8a0;
-    --fc-warning-badge-bg: #644b1cd9;
-    --fc-success-badge: #c8f5dc;
-    --fc-success-badge-bg: #1c5034d9;
-    --fc-highlight-badge: #c8f0f8;
-    --fc-highlight-badge-bg: #184852d9;
-    --fc-destructive-badge: #ffd8d0;
-    --fc-destructive-badge-bg: #5f2824d9;
-    --fc-neutral-badge: #ece8e2;
-    --fc-neutral-badge-bg: #fff8f024;
-    --fc-star: #fbbf24;
-    --fc-star-muted: #4b5563;
-    --lightningcss-light: ;
-    --lightningcss-dark: initial;
+    color-scheme: light;
+    --fc-surface: #faf8f5;
+    --fc-surface-elevated: #ffffff;
+    --fc-foreground: #1c1917;
+    --fc-foreground-muted: #6b645c;
+    --fc-foreground-subtle: #948c82;
+    --fc-border: #e6dfd5;
+    --fc-border-muted: #f0eae1;
+    --fc-brand: #b93b3b;
+    --fc-brand-muted: rgba(185, 59, 59, 0.12);
+    --fc-success: #2b7d5a;
+    --fc-success-muted: rgba(43, 125, 90, 0.14);
+    --fc-warning: #c28723;
+    --fc-warning-muted: rgba(194, 135, 35, 0.14);
+    --fc-info: #2d6fa8;
+    --fc-info-muted: rgba(45, 111, 168, 0.14);
+    --fc-highlight: #178998;
+    --fc-highlight-muted: rgba(23, 137, 152, 0.14);
+    --fc-destructive: #b93b3b;
+    --fc-destructive-muted: rgba(185, 59, 59, 0.14);
+    --fc-overlay: rgba(28, 25, 23, 0.4);
+    --fc-brand-badge: #8c2525;
+    --fc-brand-badge-bg: #fbe6e4;
+    --fc-info-badge: #1d3e66;
+    --fc-info-badge-bg: #dbe7f6;
+    --fc-warning-badge: #73531a;
+    --fc-warning-badge-bg: #faedd2;
+    --fc-success-badge: #195034;
+    --fc-success-badge-bg: #d6f0e2;
+    --fc-highlight-badge: #164a50;
+    --fc-highlight-badge-bg: #d2eaee;
+    --fc-destructive-badge: #7a2525;
+    --fc-destructive-badge-bg: #f8d7d7;
+    --fc-neutral-badge: #4a443b;
+    --fc-neutral-badge-bg: #f2ece5;
+    --fc-star: #d9911e;
+    --fc-star-muted: #d0c7ba;
+    --lightningcss-light: initial;
+    --lightningcss-dark: ;
 
     --bg: var(--fc-surface);
     --card: var(--fc-surface-elevated);
@@ -63,7 +63,7 @@
 
 body {
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: radial-gradient(circle at top left, #281414 0%, var(--fc-surface-elevated) 35%, var(--fc-surface) 100%);
+    background: #faf8f5;
     color: var(--text);
     display: flex;
     flex-direction: column;
@@ -76,11 +76,9 @@ body {
 /* App Header Navigation */
 .app-header {
     min-height: 56px;
-    padding: 10px 12px;
-    background:
-        linear-gradient(120deg, var(--fc-brand-muted), transparent 45%),
-        linear-gradient(180deg, var(--fc-surface-elevated), var(--fc-surface));
-    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--fc-border);
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -88,7 +86,6 @@ body {
     gap: 10px;
     position: relative;
     z-index: 100;
-    border-bottom: 1px solid var(--fc-border-muted);
 }
 
 .brand-logo-badge {
@@ -96,12 +93,11 @@ body {
     color: var(--fc-brand-badge);
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 800;
-    font-size: 14px;
-    padding: 6px 12px;
+    font-size: 13px;
+    padding: 5px 12px;
     border-radius: 999px;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 10px var(--fc-brand-muted);
-    border: 1px solid var(--fc-brand-muted);
+    letter-spacing: 0.8px;
+    border: 1px solid #f2beba;
 }
 
 .brand-title {
@@ -120,11 +116,11 @@ body {
 }
 
 .btn-icon {
-    background: var(--fc-surface-elevated);
+    background: #ffffff;
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 8px 10px;
+    padding: 8px 12px;
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -132,9 +128,12 @@ body {
     align-items: center;
     gap: 6px;
     transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .btn-icon:hover {
+    background: #f7f3ec;
+    border-color: #d8cebf;
     transform: translateY(-1px);
 }
 
@@ -242,14 +241,14 @@ body {
     padding: 14px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 16px rgba(40, 30, 20, 0.04);
     position: relative;
     overflow: hidden;
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
-    border-color: var(--fc-brand-muted);
+    border-color: #d6cbbe;
 }
 
 .card-title {
@@ -273,7 +272,7 @@ body {
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 16px rgba(40, 30, 20, 0.04);
 }
 
 
@@ -344,23 +343,27 @@ body {
 }
 
 .data-table th {
-    background-color: var(--fc-surface);
-    padding: 14px 12px;
+    background-color: #f6f2ec;
+    color: var(--fc-foreground);
+    padding: 12px 10px;
     position: sticky;
     top: 0;
+    font-weight: 600;
     border-bottom: 1px solid var(--border);
 }
 
 .data-table td {
     padding: 8px 10px;
+    color: var(--fc-foreground);
+    border-bottom: 1px solid var(--fc-border-muted);
 }
 
 .data-table tbody tr:nth-child(even) {
-    background-color: var(--fc-surface-elevated);
+    background-color: #fdfbf8;
 }
 
 .data-table tbody tr:hover {
-    background-color: var(--fc-brand-muted);
+    background-color: #fcf1ef;
 }
 
 /* Badges */
@@ -425,11 +428,11 @@ body {
 }
 
 .btn-tab {
-    background: var(--fc-surface-elevated);
+    background: #ffffff;
     color: var(--muted);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
@@ -437,15 +440,15 @@ body {
 }
 
 .btn-tab:hover {
-    background: var(--fc-border-muted);
+    background: #f7f3ec;
     color: var(--text);
 }
 
 .btn-tab.active {
     background: var(--fc-brand-badge-bg);
     color: var(--fc-brand-badge);
-    border-color: var(--fc-brand);
-    box-shadow: 0 0 10px var(--fc-brand-muted);
+    border-color: #f0beba;
+    box-shadow: none;
 }
 
 
@@ -453,17 +456,14 @@ body {
 .app-footer {
     min-height: 56px;
     margin-top: 10px;
-    padding: 16px 12px;
-    background:
-        linear-gradient(to left, var(--fc-brand-muted), transparent 45%),
-        linear-gradient(180deg, var(--fc-surface-elevated), var(--fc-surface));
-    backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    background: #ffffff;
+    border-top: 1px solid var(--fc-border);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
-    border-top: 1px solid var(--fc-border-muted);
 }
 
 .slide-progress-dots {
@@ -477,18 +477,18 @@ body {
     width: 9px;
     height: 10px;
     border-radius: 50%;
-    background: var(--fc-border-muted);
+    background: #e6dfd5;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid var(--fc-border);
+    border: 1px solid #ddd5c9;
 }
 
 .dot.active {
     background: var(--fc-brand);
     width: 30px;
     border-radius: 5px;
-    border-color: var(--fc-brand-badge);
-    box-shadow: 0 0 14px var(--fc-brand-muted);
+    border-color: var(--fc-brand);
+    box-shadow: 0 2px 8px rgba(185, 59, 59, 0.25);
 }
 
 .footer-nav-controls {
@@ -689,4 +689,50 @@ body {
     .venue-comparison-chart-container {
         min-height: 500px;
     }
+}
+
+/* Zero Check-ins Compact Section (Slide 8) */
+.zero-checkins-section {
+    margin-top: 10px;
+    background: #fbf8f4;
+    border: 1px solid var(--fc-border-muted);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.zero-checkins-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--fc-destructive);
+    white-space: nowrap;
+}
+
+.zero-checkins-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+    align-items: center;
+}
+
+.zero-checkin-tag {
+    background: #ffffff;
+    border: 1px solid #e5ded4;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--fc-foreground-muted);
+    line-height: 1.35;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.zero-checkin-tag:hover {
+    border-color: var(--fc-brand);
+    color: var(--fc-foreground);
 }
