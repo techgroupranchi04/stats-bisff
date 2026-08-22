@@ -91,9 +91,9 @@ function initCharts() {
         charts.audience = new Chart(ctxAudience, {
             type: 'doughnut',
             data: {
-                labels: ['General Delegate', 'Cinephile', 'Discovery Film (Industry)', 'Filmmaker', 'Student / Senior', 'Guest', 'Other'],
+                labels: ['General Delegate', 'Cinephile', 'Discovery Film (Industry)', 'Student / Senior', 'Filmmaker', 'Guest', 'Other'],
                 datasets: [{
-                    data: [1005, 716, 468, 279, 204, 77, 58],
+                    data: [564, 330, 226, 110, 106, 57, 50],
                     backgroundColor: chartColors,
                     borderWidth: 0, // Removed border for a cleaner modern look
                     hoverOffset: 4
@@ -362,12 +362,12 @@ function initCharts() {
             type: 'bar',
             data: {
                 labels: [
-                    'Guest', 'Pitcher', 'Buyer', 'Senior Citizen', 'Seller',
-                    'General Delegate', 'Cinephile', 'Student', 'Filmmaker', 'Speaker'
+                    'Pitcher', 'Seller', 'Filmmaker', 'Guest', 'Cinephile',
+                    'General Delegate', 'Student', 'Student / Senior', 'Senior Citizen', 'Buyer', 'Speaker'
                 ],
                 datasets: [{
                     label: 'Turnout Rate (%)',
-                    data: [63.64, 42.09, 41.67, 39.29, 39.18, 39.10, 38.97, 35.71, 33.33, 26.32],
+                    data: [89.04, 88.24, 87.74, 85.96, 84.55, 69.68, 66.67, 61.82, 61.11, 43.33, 18.75],
                     backgroundColor: (ctx) => {
                         const val = ctx.raw;
                         // Theme-aligned dynamic colors
